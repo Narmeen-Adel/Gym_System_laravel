@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/sessions', 'SessionsController@index')
+    ->name('sessions.index');
+
+Route::get('/sessionss/create', 'SessionsController@create')
+    ->name('sessions.create');
+Route::post('/sessions', 'SessionsController@store')
+    ->name('sessions.store');
+Route::get('/sessions/{session}/edit', 'SessionsController@edit')
+    ->name('sessions.edit');
+Route::put('/sessions/{session}/update','SessionsController@update')
+    ->name('sessions.update');
+Route::get('/sessions/{session}/show','SessionsController@show')
+    ->name('sessions.show');
+Route::delete('/sessions/{session}','SessionsController@destroy')
+    ->name('sessions.destroy');    
