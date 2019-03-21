@@ -19,10 +19,22 @@ class SessionsController extends Controller
         ]);
     }
 
-    public function store(StoreSessionRequest $request)
+    public function store(Request $request)
     {
-        Session::create($request->all());
-        return redirect()->route('sessions.index');
+        $sessions=Session::where('session_day',$request->starts_at('d-m-Y'))->get();
+        if($sessions){
+            foreach ($sessions as $session){
+                if($request->starts_at('H:i:s A')>=$session->finishes_at('H:i:s A')||$session->starts_at('H:i:s A')>=$request->finishes_at('H:i:s A')){
+                    Session::create($request->all());
+                    return redirect()->route('sessions.index');
+                }else{
+                    return redirect()->route('sessions.error');
+
+                }
+                
+            }
+        }
+        
     }
 
     public function edit(Session $session)
@@ -38,7 +50,7 @@ class SessionsController extends Controller
             ]);
     }
 
-    public function update(UpdateSessionRequest $request,Session $session)
+    public function update(Request $request,Session $session)
         {
             $session->update($request->all());
             return redirect()->route('sessions.index');

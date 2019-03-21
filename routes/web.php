@@ -28,4 +28,6 @@ Route::put('/sessions/{session}/update','SessionsController@update')
 Route::get('/sessions/{session}/show','SessionsController@show')
     ->name('sessions.show');
 Route::delete('/sessions/{session}','SessionsController@destroy')
-    ->name('sessions.destroy');    
+    ->name('sessions.destroy'); 
+Route::get('/sessions/error','SessionsController@error')
+    ->name('sessions.error');       
