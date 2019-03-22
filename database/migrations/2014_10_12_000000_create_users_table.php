@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->default("admin");
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('gender')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->boolean('is_ban')->nullable();
-            $table->tinyInteger('position')->nullable();
+            $table->tinyInteger('position')->nullable()->default(0);
         });
     }
 

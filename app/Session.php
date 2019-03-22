@@ -14,6 +14,8 @@ class Session extends Model
         'name',
         'starts_at',
         'finishes_at',
+        'day',
+        'coaches'
         
     ];
 

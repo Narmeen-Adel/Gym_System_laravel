@@ -12,7 +12,12 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+<<<<<<< HEAD
         "yajra/laravel-datatables-oracle": "~9.0"
+=======
+        "yajra/laravel-datatables-oracle": "~9.0",
+        "webpatser/laravel-countries": "dev-master"
+>>>>>>> 66d6e489713eda8456dabde698f660f9576a35ed
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

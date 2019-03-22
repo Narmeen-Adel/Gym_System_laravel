@@ -14,8 +14,8 @@ class AddGymIdColumnToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('gym_id');
-            $table->foreign('gym_id')->references('id')->on('gyms')->nullable();
+            $table->unsignedBigInteger('gym_id')->nullable();
+            $table->foreign('gym_id')->references('id')->on('gyms');
             //
         });
     }
