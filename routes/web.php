@@ -33,4 +33,11 @@ Route::delete('/sessions/{session}','SessionsController@destroy')
 Route::get('/sessions/error','SessionsController@error')
     ->name('sessions.error');       
 
-//Route::get('/gyms', 'GymsController@index')->name('gyms.index');
+Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
+Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
+Route::post('/gyms','Gyms\GymsController@store')->name('gyms.store');
+Route::get('/gyms/{gym}/edit','Gyms\GymsController@edit')->name('gyms.edit');
+Route::put('/gyms/{gym}','Gyms\GymsController@update')->name('gyms.update');
+Route::delete('/gyms/{gyms}','Gyms\GymsController@destroy')->name('gyms.destroy');
+Route::get('/gyms/{gym}','Gyms\GymsController@show')->name('gyms.show');
+
