@@ -29,9 +29,7 @@ Route::put('/sessions/{session}/update','SessionsController@update')
 Route::get('/sessions/{session}/show','SessionsController@show')
     ->name('sessions.show');
 Route::delete('/sessions/{session}','SessionsController@destroy')
-    ->name('sessions.destroy'); 
-Route::get('/sessions/error','SessionsController@error')
-    ->name('sessions.error');       
+    ->name('sessions.destroy');       
 
 Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
 Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
