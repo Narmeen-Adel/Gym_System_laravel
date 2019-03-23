@@ -12,14 +12,13 @@
     </div>
 @endif
   <div class="form-group">
-    <label for="exampleInputEmail1">title</label>
-    <input name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-   
-  </div>
+<!--    
   <div class="form-group">
     <label for="exampleInputPassword1">description</label>
-    <input name="description" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
+    <input name="paid_price" type="number" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input name="avilable_sessions" type="number" class="form-control" id="exampleInputPassword1" placeholder="Password">
+
+  </div> -->
   <div class="form-group form-check">
     <select name="user_id" >
     @foreach($users as $user)
