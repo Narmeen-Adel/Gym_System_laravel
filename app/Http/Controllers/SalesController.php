@@ -39,16 +39,9 @@ class SalesController extends Controller
      */
     public function store(StoreSaleRequest $request)
     { 
-      //dd($request->fillable->package_id);
-     // dd($request->all());
-      //$request=$request->all();
-     $pack=Package::find($request->package_id);
-    // dd($pack->price);
-   
-     $user_id=$request->user_id;
-    // dd($request->all());
       
-
+      $pack=Package::find($request->package_id);
+      $user_id=$request->user_id;
       Sale::create([
 
       'available_sessions'=>$pack->sessionsNumber,
