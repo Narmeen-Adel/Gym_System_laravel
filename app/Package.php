@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Package extends Model
 {
     protected $fillable = [
-        'price',
+        'name',
         'sessionsNumber',
+        'price',
         'gym_id',
     ];
 
     public function gym()
     {
-        // return $this->belongsTo('App\User');
-        return $this->belongsTo(Gym::class);
+
+        return $this->belongsTo('App\Gym');
     }
 }

@@ -14,7 +14,7 @@ class CreateAttendanceTable extends Migration
     public function up()
     {
         Schema::create('attendance', function (Blueprint $table) {
-            // $table->bigIncrements('id');
+            $table->bigIncrements('id');
             $table->unsignedbigInteger('session_id')->nullable();
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
             $table->unsignedbigInteger('user_id')->nullable();
