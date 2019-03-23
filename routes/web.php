@@ -41,3 +41,6 @@ Route::put('/gyms/{gym}','Gyms\GymsController@update')->name('gyms.update');
 Route::delete('/gyms/{gyms}','Gyms\GymsController@destroy')->name('gyms.destroy');
 Route::get('/gyms/{gym}','Gyms\GymsController@show')->name('gyms.show');
 
+Route::get('/sales', 'SalesController@index')->name('sales.index');
+Route::get('/sales/create','SalesController@create')->name('sales.create');
+Route::post('/sales', 'SalesController@store')->name('sales.store');
