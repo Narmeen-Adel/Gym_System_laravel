@@ -1,6 +1,6 @@
 <form method="POST"action="{{route('sales.store')}}"> @csrf
 
-<h1>Create Post</h1>
+<h1>Create Sale</h1>
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -12,13 +12,7 @@
     </div>
 @endif
   <div class="form-group">
-<!--    
-  <div class="form-group">
-    <label for="exampleInputPassword1">description</label>
-    <input name="paid_price" type="number" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    <input name="avilable_sessions" type="number" class="form-control" id="exampleInputPassword1" placeholder="Password">
 
-  </div> -->
   <div class="form-group form-check">
     <select name="user_id" >
     @foreach($users as $user)

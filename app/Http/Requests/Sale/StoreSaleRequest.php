@@ -32,10 +32,10 @@ class StoreSaleRequest extends FormRequest
     public function message()
     {
         return [
-        'package_id.required'=>"insert package ...",
+        'package_id.required'=>" insert package ...",
         'package_id.exists'=>"package not found",
         'user_id.required'=>"insert user ",
-        'user_id.exists'=>"insert user "             
+        'user_id.exists'=>"user not found ",          
     ];
     }
 }
