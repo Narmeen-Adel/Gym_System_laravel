@@ -17,7 +17,6 @@ Route::get('/', function () {
 
 Route::get('/sessions', 'SessionsController@index')
     ->name('sessions.index');
-
 Route::get('/sessionss/create', 'SessionsController@create')
     ->name('sessions.create');
 Route::post('/sessions', 'SessionsController@store')
@@ -29,7 +28,37 @@ Route::put('/sessions/{session}/update','SessionsController@update')
 Route::get('/sessions/{session}/show','SessionsController@show')
     ->name('sessions.show');
 Route::delete('/sessions/{session}','SessionsController@destroy')
-    ->name('sessions.destroy'); 
+    ->name('sessions.destroy');
+    
+    
+Route::get('/gymmanagers', 'GymManagersController@index')
+    ->name('gymmanagers.index');
+Route::get('/gymmanagers/create', 'GymManagersController@create')
+    ->name('gymmanagers.create');
+Route::post('/gymmanagers', 'GymManagersController@store')
+    ->name('gymmanagers.store');
+Route::get('/gymmanagers/{gymmanager}/edit', 'GymManagersController@edit')
+    ->name('gymmanagers.edit');
+Route::put('/gymmanagers/{gymmanager}/update','GymManagersController@update')
+    ->name('gymmanagers.update');
+Route::delete('/gymmanagers/{gymmanager}','GymManagersController@destroy')
+    ->name('gymmanagers.destroy');
+    
+    
+
+Route::get('/citymanagers', 'CityManagersController@index')
+    ->name('citymanagers.index');
+Route::get('/citymanagers/create', 'CityManagersController@create')
+    ->name('citymanagers.create');
+Route::post('/citymanagers', 'CityManagersController@store')
+    ->name('citymanagers.store');
+Route::get('/citymanagers/{citymanager}/edit', 'CityManagersController@edit')
+    ->name('citymanagers.edit');
+Route::put('/citymanagers/{citymanager}/update','CityManagersController@update')
+    ->name('citymanagers.update');
+Route::delete('/citymanagers/{citymanager}','CityManagersController@destroy')
+    ->name('citymanagers.destroy');
+
 
 
 
