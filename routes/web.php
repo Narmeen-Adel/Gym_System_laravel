@@ -30,8 +30,10 @@ Route::get('/sessions/{session}/show','SessionsController@show')
     ->name('sessions.show');
 Route::delete('/sessions/{session}','SessionsController@destroy')
     ->name('sessions.destroy'); 
-// Route::get('/sessions/error','SessionsController@error')
-//     ->name('sessions.error');       
+
+
+
+    
 
 // Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
 // Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
@@ -45,8 +47,6 @@ Route::Resource('gyms', 'Gyms\GymsController');
 Route::get('/sales', 'SalesController@index')->name('sales.index');
 Route::get('/sales/create','SalesController@create')->name('sales.create');
 Route::post('/sales', 'SalesController@store')->name('sales.store');
-
-
 
 
 
