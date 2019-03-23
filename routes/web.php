@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('/sessions', 'SessionsController@index')
     ->name('sessions.index');
 
-Route::get('/sessionss/create', 'SessionsController@create')
+Route::get('/sessions/create', 'SessionsController@create')
     ->name('sessions.create');
 Route::post('/sessions', 'SessionsController@store')
     ->name('sessions.store');
@@ -30,10 +30,15 @@ Route::put('/sessions/{session}/update', 'SessionsController@update')
     ->name('sessions.update');
 Route::get('/sessions/{session}/show', 'SessionsController@show')
     ->name('sessions.show');
+<<<<<<< HEAD
 Route::delete('/sessions/{session}', 'SessionsController@destroy')
     ->name('sessions.destroy');
 Route::get('/sessions/error', 'SessionsController@error')
     ->name('sessions.error');
+=======
+Route::delete('/sessions/{session}','SessionsController@destroy')
+    ->name('sessions.destroy');       
+>>>>>>> 32ae4921133e24c18fcea017b89aa9d9fd933141
 
 Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
 Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
