@@ -20,8 +20,6 @@ class CreateSalesTable extends Migration
             $table->integer('available_sessions');
             $table->unsignedbigInteger('package_id')->nullable();
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
-            $table->unsignedbigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
