@@ -14,8 +14,7 @@ class AddGymIdColumnToSessions extends Migration
     public function up()
     {
         Schema::table('sessions', function (Blueprint $table) {
-            $table->unsignedBigInteger('gym_id');
-            $table->foreign('gym_id')->references('id')->on('gyms');
+            $table->unsignedBigInteger('gym_id')->nullable();
         });
     }
 

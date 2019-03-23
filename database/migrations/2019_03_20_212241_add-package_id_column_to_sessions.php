@@ -14,8 +14,7 @@ class AddPackageIdColumnToSessions extends Migration
     public function up()
     {
         Schema::table('sessions', function (Blueprint $table) {
-            $table->unsignedBigInteger('package_id');
-            $table->foreign('package_id')->references('id')->on('packages');
+            $table->unsignedBigInteger('package_id')->nullable();
         });
     }
 
