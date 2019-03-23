@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/sessions', 'SessionsController@index')
     ->name('sessions.index');
 
@@ -24,20 +26,26 @@ Route::post('/sessions', 'SessionsController@store')
     ->name('sessions.store');
 Route::get('/sessions/{session}/edit', 'SessionsController@edit')
     ->name('sessions.edit');
-Route::put('/sessions/{session}/update','SessionsController@update')
+Route::put('/sessions/{session}/update', 'SessionsController@update')
     ->name('sessions.update');
-Route::get('/sessions/{session}/show','SessionsController@show')
+Route::get('/sessions/{session}/show', 'SessionsController@show')
     ->name('sessions.show');
-Route::delete('/sessions/{session}','SessionsController@destroy')
-    ->name('sessions.destroy'); 
-Route::get('/sessions/error','SessionsController@error')
-    ->name('sessions.error');       
+Route::delete('/sessions/{session}', 'SessionsController@destroy')
+    ->name('sessions.destroy');
+Route::get('/sessions/error', 'SessionsController@error')
+    ->name('sessions.error');
 
 Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
 Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
-Route::post('/gyms','Gyms\GymsController@store')->name('gyms.store');
-Route::get('/gyms/{gym}/edit','Gyms\GymsController@edit')->name('gyms.edit');
-Route::put('/gyms/{gym}','Gyms\GymsController@update')->name('gyms.update');
-Route::delete('/gyms/{gyms}','Gyms\GymsController@destroy')->name('gyms.destroy');
-Route::get('/gyms/{gym}','Gyms\GymsController@show')->name('gyms.show');
+Route::post('/gyms', 'Gyms\GymsController@store')->name('gyms.store');
+Route::get('/gyms/{gym}/edit', 'Gyms\GymsController@edit')->name('gyms.edit');
+Route::put('/gyms/{gym}', 'Gyms\GymsController@update')->name('gyms.update');
+Route::delete('/gyms/{gyms}', 'Gyms\GymsController@destroy')->name('gyms.destroy');
+Route::get('/gyms/{gym}', 'Gyms\GymsController@show')->name('gyms.show');
 
+Route::get('/packages', 'PackageController@index')->name('packages.index');
+Route::get('/packages/create', 'PackageController@create')->name('packages.create');
+Route::post('/packages', 'PackageController@store')->name('packages.store');
+Route::get('/packages/{package}/edit', 'PackageController@edit')->name('packages.edit');
+Route::delete('/packages/{package}', 'PackageController@delete')->name('packages.delete');
+Route::put('/packages/{package}', 'PackageController@update')->name('packages.update');
