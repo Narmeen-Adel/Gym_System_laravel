@@ -1,10 +1,26 @@
+@extends('layouts.admin')
+
+@section('content')
+
+<!-- @if ($errors->any())
+   <div class="alert alert-danger">
+       <ul>
+           @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+           @endforeach
+       </ul>
+   </div>
+@endif -->
+<div class="container con">
+    <br>
+    <br>
 <a href="{{route('gyms.create')}}" class="btn btn-success">Create Gym</a>
 <table class="table">
   <thead>
     <tr>
-      
+
       <th scope="col">Name</th>
-      
+
       <th scope="col">Created At</th>
       <th scope="col">ِActions</th>
     </tr>
@@ -12,10 +28,10 @@
   <tbody>
     @foreach($gyms as $gym)
     <tr>
-      
+
       <td>{{$gym->name}}</td>
-      
-      
+
+
       <td><a href="{{route('gyms.show',$gym->id)}}" class="btn btn-success">View</a></td>
       <td><a href="{{route('gyms.edit',$gym->id)}}" class="btn btn-success">Edit</a></td>
       <td>
@@ -27,7 +43,7 @@
             function myFunction(){
               if (!confirm('are you sure you want to delete ?'))
                 event.preventDefault();
-              
+
             }
           </script>
         </form>
@@ -37,3 +53,5 @@
 
   </tbody>
 </table>
+
+@endsection

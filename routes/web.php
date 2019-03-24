@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-
+Route::group(['middleware' => 'auth'], function () {
 Route::get('/sessions', 'SessionsController@index')
     ->name('sessions.index');
 
@@ -30,15 +30,8 @@ Route::put('/sessions/{session}/update', 'SessionsController@update')
     ->name('sessions.update');
 Route::get('/sessions/{session}/show', 'SessionsController@show')
     ->name('sessions.show');
-<<<<<<< HEAD
-Route::delete('/sessions/{session}', 'SessionsController@destroy')
-    ->name('sessions.destroy');
-Route::get('/sessions/error', 'SessionsController@error')
-    ->name('sessions.error');
-=======
 Route::delete('/sessions/{session}','SessionsController@destroy')
-    ->name('sessions.destroy');       
->>>>>>> 32ae4921133e24c18fcea017b89aa9d9fd933141
+    ->name('sessions.destroy');
 
 Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
 Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
@@ -54,3 +47,8 @@ Route::post('/packages', 'PackageController@store')->name('packages.store');
 Route::get('/packages/{package}/edit', 'PackageController@edit')->name('packages.edit');
 Route::delete('/packages/{package}', 'PackageController@delete')->name('packages.delete');
 Route::put('/packages/{package}', 'PackageController@update')->name('packages.update');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

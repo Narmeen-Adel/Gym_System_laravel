@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 
-<div class="container">
+
     @section('content')
     <!-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -16,12 +16,13 @@
     <br>
     <br>
 
-
+    <div class="container con">
+        <h2>Add Package</h2>
 
     <form action="{{route('packages.store')}}" method="POST">
         @csrf
         <div class="form-group">
-            <label>Name</label>
+            <label>Package Name</label>
             <input name="name" type="text" class="form-control">
         </div>
 
@@ -32,13 +33,13 @@
 
 
         <div class="form-group">
-            <label>Price</label>
+            <label>Package Price</label>
             <input name="price" class="form-control" />
         </div>
 
 
         <div class="form-group">
-            <label>Gym Id</label>
+            <label>Gym Name</label>
             <select class="form-control" name="gym_id">
                 @foreach($gyms as $gym)
                 <option value="{{$gym->id}}">{{$gym->name}}</option>
@@ -49,7 +50,5 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="{{route('packages.index')}}" class="btn btn-danger">Back</a>
     </form>
-</div>
-
-
+ </div>
 @endsection
