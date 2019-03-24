@@ -106,7 +106,6 @@ Route::post('/sales', 'SalesController@store')->name('sales.store');
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();

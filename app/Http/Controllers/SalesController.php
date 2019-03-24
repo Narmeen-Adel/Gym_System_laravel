@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sale;
-use App\User;
+use App\Customer;
 use App\Package;
 use Illuminate\Http\Request;
 use App\Http\Requests\Sale\StoreSaleRequest;
@@ -28,7 +28,7 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('sales.create',['users'=>User::all(),'packages' =>Package::all()]);
+        return view('sales.create',['customers'=>Customer::all(),'packages' =>Package::all()]);
     }
 
     /**
@@ -41,13 +41,11 @@ class SalesController extends Controller
     { 
       
       $pack=Package::find($request->package_id);
-      $user_id=$request->user_id;
       Sale::create([
-
       'available_sessions'=>$pack->sessionsNumber,
       'paid_price'=>$pack->price,
       'package_id'=>$pack->id,
-      'user_id'=>$request->user_id]);
+      'user_id'=>$request->customer_id]);
       return redirect()->route('sales.index');   
     }
 
