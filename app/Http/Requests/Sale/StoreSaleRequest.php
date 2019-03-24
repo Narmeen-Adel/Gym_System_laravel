@@ -26,7 +26,7 @@ class StoreSaleRequest extends FormRequest
         return[
             'package_id'=>'required|exists:packages,id',
             
-            'user_id'=>'required|exists:users,id'
+            'customer_id'=>'required|exists:customers,id'
         ];
     }
     public function message()
@@ -34,8 +34,8 @@ class StoreSaleRequest extends FormRequest
         return [
         'package_id.required'=>" insert package ...",
         'package_id.exists'=>"package not found",
-        'user_id.required'=>"insert user ",
-        'user_id.exists'=>"user not found ",          
+        'customer_id.required'=>"insert user ",
+        'customer_id.exists'=>"user not found ",          
     ];
     }
 }

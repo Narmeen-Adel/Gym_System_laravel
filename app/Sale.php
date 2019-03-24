@@ -14,7 +14,7 @@ class Sale extends Model
     {
         return $this->belongsTo(Package::class);
     }
-    public function user(){
+    public function customer(){
         return $this->belongsTo(User::class);
 
     }

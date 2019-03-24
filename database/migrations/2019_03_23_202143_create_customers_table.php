@@ -15,12 +15,12 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->default("admin");
+            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->timestamps();
-            $table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->string('gender')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('image')->nullable()->default('myimage.jpg');

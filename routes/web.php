@@ -98,7 +98,7 @@ Route::post('/sales', 'SalesController@store')->name('sales.store');
 
 
 
-
+Route::post('/session/{id}/attend/', 'Api\AttendanceController@store')->name('.store');
 
 
 
