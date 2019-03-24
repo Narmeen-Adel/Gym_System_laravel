@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
-    <h2>Packages Page</h2>
+    <h2>Training Packages</h2>
     <br>
     <table class="table table-hover">
         <thead>
@@ -27,14 +27,14 @@
                 <td>{{date('Y-m-d', strtotime($package->created_at)) }}</td>
 
                 <td>
-                    <a href="{{route('packages.edit',['package' => $package->id])}}" class="btn btn-success">Edit</a>
+                    <a href="{{route('packages.edit',['package' => $package->id])}}" class="btn btn-success"><i class="fa fa-edit"></i><span>Edit</span></a>
 
                     <form action="{{route('packages.delete',['package' => $package->id])}}" method="Post" style="display:inline; float:left; margin-right:10px;">
                         @csrf
                         @method('DELETE')
 
 
-                        <button type="submit" onclick="return confirm('Are you Sure !')" class="btn btn-danger">Delete</button>
+                        <button type="submit" onclick="return confirm('Are you Sure !')" class="btn btn-danger"><i class="fa fa-times"></i><span>Delete</span></button>
                     </form>
 
                 </td>
@@ -44,14 +44,10 @@
     </table>
     <br>
     <br>
-    <a class="btn btn-info" href="{{route('packages.create')}}">Add New Package</a>
+    <a class="btn btn-info" href="{{route('packages.create')}}"><i class="fa fa-plus"></i><span>Add New Package</span></a>
     <br>
     <br>
 
 </div>
-<select class="form-control" multiple="multiple">
-        <option selected="selected">orange</option>
-        <option>white</option>
-        <option selected="selected">purple</option>
-    </select>
+
 @endsection
