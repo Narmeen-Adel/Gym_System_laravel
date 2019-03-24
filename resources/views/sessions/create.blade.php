@@ -7,44 +7,9 @@
         @csrf
         <input name="name" type='text' class="form-control" />
         <input name="day" type='text' class="form-control" />
-        <div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input name="starts_at" type='DateTime' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
-</div>
-<div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input name="finishes_at" type='datetime' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
-</div>
-<input name="gym_id" type='text' class="form-control" />
+        <input name="starts_at" type='text' class="form-control" />
+        <input name="finishes_at" type='text' class="form-control" />
+        <input name="gym_id" type='text' class="form-control" />
 
    
         
