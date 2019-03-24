@@ -16,8 +16,8 @@ class Session extends Model
         'finishes_at',
         'day',
         'coaches',
-        'gym',
-        'package'
+        'gym_id',
+        'package_id'
         
     ];
 

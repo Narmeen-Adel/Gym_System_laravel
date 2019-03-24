@@ -15,8 +15,8 @@
 
   <div class="form-group form-check">
     <select name="user_id" >
-    @foreach($users as $user)
-    <option value="{{$user->id}}">{{$user->name}}</option>
+    @foreach($customers as $customer)
+    <option value="{{$customer->id}}">{{$customer->name}}</option>
     @endforeach
     </select>
   </div>

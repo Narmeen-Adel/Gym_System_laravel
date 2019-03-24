@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Coach;
 use App\Session;
 use App\Package;
+use App\Gym;
 use App\Rules\DeleteSessionRule;
+use App\Rules\OverlapValidateRule;
 use App\Http\Requests\Session\StoreSessionRequest;
 
 class SessionsController extends Controller
@@ -30,7 +32,8 @@ class SessionsController extends Controller
 
     public function store(StoreSessionRequest $request)
     {
-        Session::create($request->all());
+        $this->validate($request, ['starts_at' => new OverlapValidateRule($request->finishes_at)]);
+         Session::create($request->all());
         return redirect()->route('sessions.index');
     }
 

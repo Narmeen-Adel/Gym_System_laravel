@@ -7,7 +7,7 @@
       <th scope="col">Id</th>
       <th scope="col">available_session</th>
       <th scope="col">package</th>
-      <th scope="col">user_id</th>
+      <th scope="col">customer_id</th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +16,7 @@
       <th scope="row">{{$sale->id}}</th>
       <td>{{$sale->available_sessions}}</td>
       <td>{{$sale->package->sessionsNumber}}</td>
-      <td>{{ isset($sale->user->name) ? $sale->user->name: 'Not Found'}}</td>
+      <td>{{ isset($sale->customer->name) ? $sale->customer->name: 'Not Found'}}</td>
     </tr>
     @endforeach
 
