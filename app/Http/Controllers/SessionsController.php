@@ -10,6 +10,7 @@ use App\Gym;
 use App\Rules\DeleteSessionRule;
 use App\Rules\OverlapValidateRule;
 use App\Http\Requests\Session\StoreSessionRequest;
+use App\Http\Requests\Session\UpdateSessionRequest;
 
 class SessionsController extends Controller
 {
@@ -55,8 +56,12 @@ class SessionsController extends Controller
                     ]);}
     }
 
-    public function update(Request $request,Session $session)
+    public function update(UpdateSessionRequest $request,Session $session)
         {
+            $session->validate([
+                $session->id => new HasUsersSessionRule
+            ]);
+            $this->validate($request, ['starts_at' => new OverlapValidateRule($request->finishes_at)]);
             $session->update($request->all());
             return redirect()->route('sessions.index');
         }
@@ -80,7 +85,7 @@ class SessionsController extends Controller
     {
        
         $session->validate([
-            $session->id => new DeleteSessionRule
+            $session->id => new HasUsersSessionRule
         ]);
        $affectedRows = Session::where('id',$session->id)->delete();
        return redirect()->route('sessions.index');

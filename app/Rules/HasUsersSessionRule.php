@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class DeleteSessionRule implements Rule
+class HasUsersSessionRule implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,8 +26,13 @@ class DeleteSessionRule implements Rule
     public function passes($attribute, $value)
     {
         $hasUsers=Attendence::where('session_id',$value)->get();
-       return(!$hasUsers);
-       }
+        $arr=$hasUsers->pluck('id')->toArray();
+        if($arr!=[]){
+            return false;
+        }else{
+            return true;
+        }
+    }
     
 
     /**
@@ -37,6 +42,6 @@ class DeleteSessionRule implements Rule
      */
     public function message()
     {
-        return 'Cant Delete This Session';
+        return 'Can not Delete This Session';
     }
 }

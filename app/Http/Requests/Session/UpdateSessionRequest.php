@@ -25,22 +25,21 @@ class UpdateSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'starts_at' => new OverlapValidateRule,
-            'day' => 'after_or_equal:'.date('d-m-Y'),
-            'starts_at'=>'gte:'.date('Y-m-d H:i:s'),
+            'day' => 'after_or_equal:'.date('Y-m-d'),
+            'starts_at'=>'after_or_equal:'.date('Y-m-d H:i:s'),
             'coach_id' => 'exists:coaches,id',
             'gym_id' => 'exists:gyms,id',
-            'package_id' => 'exists:packages,id'
+            'package_id' => 'exists:packages,id',
         ];
     }
     public function messages()
     {
         return [
-
+            'day.after_or_equal'=>'This day is Passed',
+            'starts_at.after_or_equal'=>'The session start time passed',
             'couch_id.exists'=>'This Id is not Exists please enter valid coach id',
             'gym_id.exists'=>'This Id is not Exists please enter valid gym id',
             'package_id.exists'=>'This Id is not Exists please enter valid package id',
-
         ];
     }
 }
