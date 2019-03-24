@@ -7,7 +7,7 @@ use App\Coach;
 use App\Session;
 use App\Package;
 use App\Gym;
-use App\Rules\DeleteSessionRule;
+use App\Rules\HasUsersSessionRule;
 use App\Rules\OverlapValidateRule;
 use App\Http\Requests\Session\StoreSessionRequest;
 use App\Http\Requests\Session\UpdateSessionRequest;
