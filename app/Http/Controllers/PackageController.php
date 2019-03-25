@@ -59,4 +59,8 @@ class PackageController extends Controller
         return redirect()->route('packages.index');
     }
 
+    public function get_table(){
+        return datatables()->of(Package::query())->toJson();
+    }
+
 }

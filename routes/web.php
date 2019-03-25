@@ -64,6 +64,7 @@ Route::post('/packages', 'PackageController@store')->name('packages.store');
 Route::get('/packages/{package}/edit', 'PackageController@edit')->name('packages.edit');
 Route::delete('/packages/{package}', 'PackageController@delete')->name('packages.delete');
 Route::put('/packages/{package}', 'PackageController@update')->name('packages.update');
+Route::get('/data_packages', 'PackageController@get_table');
 
 
 
