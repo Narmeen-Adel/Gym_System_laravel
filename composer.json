@@ -14,7 +14,10 @@
         "laravel/tinker": "^1.0",
         "yajra/laravel-datatables-oracle": "~9.0",
         "webpatser/laravel-countries": "dev-master",
-        "tymon/jwt-auth":"dev-develop"
+        "tymon/jwt-auth":"dev-develop",
+        "spatie/laravel-permission": "^2.36"
+       
+       
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

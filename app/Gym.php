@@ -9,6 +9,7 @@ class Gym extends Model
     protected $fillable = [
         'name',
         'city_id',
+        'created_at',
     ];
 
     public function city()

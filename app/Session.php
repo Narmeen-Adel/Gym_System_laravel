@@ -18,12 +18,12 @@ class Session extends Model
         'coaches',
         'gym_id',
         'package_id'
-        
+
     ];
 
     public function coaches(){
         return $this->belongsToMany(Coach::class);
-                    
+
     }
     public function gym()
     {
@@ -33,5 +33,5 @@ class Session extends Model
     {
         return $this->belongsTo(Package::class);
     }
-    
+
 }

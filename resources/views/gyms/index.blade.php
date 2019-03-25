@@ -1,57 +1,64 @@
 @extends('layouts.admin')
-
 @section('content')
 
-<!-- @if ($errors->any())
-   <div class="alert alert-danger">
-       <ul>
-           @foreach ($errors->all() as $error)
-               <li>{{ $error }}</li>
-           @endforeach
-       </ul>
-   </div>
-@endif -->
-<div class="container con">
-    <br>
-    <br>
-<a href="{{route('gyms.create')}}" class="btn btn-success">Create Gym</a>
-<table class="table">
-  <thead>
-    <tr>
+<div class="container">
+    <h2 class="box-title">Gyms</h3><br>
 
-      <th scope="col">Name</th>
+    <table id="example" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+    </table>                 
+      
+  <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#example').DataTable( {
+            serverSide: true,
+            ajax: {
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/data_gyms',
+                dataType : 'json',
+                type: 'get',
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'name' },
+                { data: 'city_id' },
+                { data: 'created_at' },
+                { data: 'updated_at' },
+               {
+                    mRender: function (data, type, row) {
+                        return '<a href="/gyms/'+row.id+'" class=" btn btn-info" data-id="' + row.id + '" style="margin-left:10px;">Show</a>' 
+                        + '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
+                        + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
 
-      <th scope="col">Created At</th>
-      <th scope="col">ِActions</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($gyms as $gym)
-    <tr>
+                    }
+                },
+              
+            ],
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : true,
+        } );
+        /*------------------------------------------------------*/
+    </script>
+    <a href='/gyms/create' style="margin-top: 10px;" class="btn btn-info"><i class="fa fa-plus"></i><span>Add New Gym</span></a>                   
 
-      <td>{{$gym->name}}</td>
 
-
-      <td><a href="{{route('gyms.show',$gym->id)}}" class="btn btn-success">View</a></td>
-      <td><a href="{{route('gyms.edit',$gym->id)}}" class="btn btn-success">Edit</a></td>
-      <td>
-        <form action="{{route('gyms.destroy',$gym->id)}}" method="POST">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-primary" onclick="return myFunction();">Delete</button>
-          <script>
-            function myFunction(){
-              if (!confirm('are you sure you want to delete ?'))
-                event.preventDefault();
-
-            }
-          </script>
-        </form>
-      </td>
-    </tr>
-    @endforeach
-
-  </tbody>
-</table>
+</div>  
 
 @endsection
+
+
