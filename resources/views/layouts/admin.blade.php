@@ -126,7 +126,7 @@
                     <li><a href="{{route('packages.index')}}"><i class="fa fa-th "></i> <span>Training Packages</span></a></li>
                     <li><a href="#"><i class="fa fa-user"></i> <span>Coaches</span></a></li>
                     <li><a href="#"><i class="fa fa-list-alt"></i> <span>Attendace</span></a></li>
-                    <li><a href="#"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
+                    <li><a href="{{route('sales.index')}}"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
                     <li><a href="#"><i class="fa  fa-line-chart "></i> <span>Revenues</span></a></li>
 
                     <!-- <li class="treeview">

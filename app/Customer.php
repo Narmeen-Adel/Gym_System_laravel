@@ -3,9 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
 
-class Customer extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+//class User extends Authenticatable implements JWTSubject
+
+
+class Customer extends Model implements JWTSubject
 {
+    use Notifiable;
     protected $fillable = [
         'name', 'email', 'password','date_of_birth','gender','image'
     ];
@@ -27,4 +34,15 @@ class Customer extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+//////////////////////// for jwt authintication
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

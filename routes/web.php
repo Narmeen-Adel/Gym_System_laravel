@@ -15,24 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
-Route::get('/sessions', 'SessionsController@index')
-    ->name('sessions.index');
-Route::get('/sessions/create', 'SessionsController@create')
-    ->name('sessions.create');
-Route::post('/sessions', 'SessionsController@store')
-    ->name('sessions.store');
-Route::get('/sessions/{session}/edit', 'SessionsController@edit')
-    ->name('sessions.edit');
-Route::put('/sessions/{session}/update','SessionsController@update')
-    ->name('sessions.update');
-Route::get('/sessions/{session}/show','SessionsController@show')
-    ->name('sessions.show');
-Route::delete('/sessions/{session}','SessionsController@destroy')
-    ->name('sessions.destroy');
-    
-    
-=======
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/sessions', 'SessionsController@index')
@@ -65,7 +47,6 @@ Route::get('/packages/{package}/edit', 'PackageController@edit')->name('packages
 Route::delete('/packages/{package}', 'PackageController@delete')->name('packages.delete');
 Route::put('/packages/{package}', 'PackageController@update')->name('packages.update');
 
->>>>>>> 5986e68490c5d021334bea81e13fe1a38e6b9aa6
 Route::get('/gymmanagers', 'GymManagersController@index')
     ->name('gymmanagers.index');
 Route::get('/gymmanagers/create', 'GymManagersController@create')
