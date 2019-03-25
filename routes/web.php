@@ -53,10 +53,18 @@ Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
 Route::post('/gyms', 'Gyms\GymsController@store')->name('gyms.store');
 Route::get('/gyms/{gym}/edit', 'Gyms\GymsController@edit')->name('gyms.edit');
 Route::put('/gyms/{gym}', 'Gyms\GymsController@update')->name('gyms.update');
-Route::delete('/gyms/{gyms}', 'Gyms\GymsController@destroy')->name('gyms.destroy');
+Route::delete('/gyms/{gym}', 'Gyms\GymsController@destroy')->name('gyms.destroy');
 Route::get('/gyms/{gym}', 'Gyms\GymsController@show')->name('gyms.show');
 Route::get('/data_gyms', 'Gyms\GymsController@get_table');
 //Route::Resource('gyms', 'Gyms\GymsController');
+
+Route::get('/cities', 'Cities\CitiesController@index')->name('cities.index');
+Route::get('/cities/create', 'Cities\CitiesController@create')->name('cities.create');
+Route::post('/cities', 'Cities\CitiesController@store')->name('cities.store');
+Route::get('/cities/{city}/edit', 'Cities\CitiesController@edit')->name('cities.edit');
+Route::put('/cities/{city}', 'Cities\CitiesController@update')->name('cities.update');
+Route::delete('/gyms/{city}', 'Cities\CitiesController@destroy')->name('cities.destroy');
+Route::get('/cities/{city}', 'Cities\CitiesController@show')->name('cities.show');
 
 Route::get('/packages', 'PackageController@index')->name('packages.index');
 Route::get('/packages/create', 'PackageController@create')->name('packages.create');
