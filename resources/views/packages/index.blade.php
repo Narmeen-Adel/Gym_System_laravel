@@ -16,7 +16,6 @@
             </tr>
         </thead>
 
-
         <tbody>
             @foreach($packages as $package)
             <tr>
