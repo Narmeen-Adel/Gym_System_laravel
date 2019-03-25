@@ -38,7 +38,6 @@ class CityManagersController extends Controller
             ]);
         }
 
-
     public function update(Request $request,User $citymanager){
         $citymanager->update($request->all());
             return redirect()->route('citymanagers.index');
@@ -49,5 +48,9 @@ class CityManagersController extends Controller
     {
        $affectedRows = User::where('id',$citymanager->id)->delete();
        return redirect()->route('citymanagers.index');
+    }
+
+    public function get_table(){
+        return datatables()->of(Package::query())->toJson();
     }
 }
