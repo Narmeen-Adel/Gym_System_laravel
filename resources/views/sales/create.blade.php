@@ -1,3 +1,6 @@
+@extends('layouts.admin')
+
+@section('content')
 <form method="POST"action="{{route('sales.store')}}"> @csrf
 
 <h1>Create Sale</h1>
@@ -29,3 +32,4 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+@endsection

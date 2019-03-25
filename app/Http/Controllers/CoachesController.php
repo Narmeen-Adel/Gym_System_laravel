@@ -16,7 +16,7 @@ class CoachesController extends Controller
 
     public function create()
     {
-        return view('coachs.create');
+        return view('coaches.create');
     }
 
     public function store(Request $request)
