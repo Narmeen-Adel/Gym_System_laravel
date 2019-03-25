@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/sessions', 'SessionsController@index')
         ->name('sessions.index');
@@ -37,8 +36,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/gyms', 'Gyms\GymsController@store')->name('gyms.store');
     Route::get('/gyms/{gym}/edit', 'Gyms\GymsController@edit')->name('gyms.edit');
     Route::put('/gyms/{gym}', 'Gyms\GymsController@update')->name('gyms.update');
-    Route::delete('/gyms/{gyms}', 'Gyms\GymsController@destroy')->name('gyms.destroy');
+    Route::delete('/gyms/{gym}', 'Gyms\GymsController@destroy')->name('gyms.destroy');
     Route::get('/gyms/{gym}', 'Gyms\GymsController@show')->name('gyms.show');
+    Route::get('/data_gyms', 'Gyms\GymsController@get_table');
+    //Route::Resource('gyms', 'Gyms\GymsController');
+
+    Route::get('/cities', 'Cities\CitiesController@index')->name('cities.index');
+    Route::get('/cities/create', 'Cities\CitiesController@create')->name('cities.create');
+    Route::post('/cities', 'Cities\CitiesController@store')->name('cities.store');
+    Route::get('/cities/{city}/edit', 'Cities\CitiesController@edit')->name('cities.edit');
+    Route::put('/cities/{city}', 'Cities\CitiesController@update')->name('cities.update');
+    Route::delete('/gyms/{city}', 'Cities\CitiesController@destroy')->name('cities.destroy');
+    Route::get('/cities/{city}', 'Cities\CitiesController@show')->name('cities.show');
+    Route::get('/data_cities', 'Cities\CitiesController@get_table');
 
     Route::get('/packages', 'PackageController@index')->name('packages.index');
     Route::get('/packages/create', 'PackageController@create')->name('packages.create');
@@ -46,6 +56,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/packages/{package}/edit', 'PackageController@edit')->name('packages.edit');
     Route::delete('/packages/{package}', 'PackageController@delete')->name('packages.delete');
     Route::put('/packages/{package}', 'PackageController@update')->name('packages.update');
+    Route::get('/data_packages', 'PackageController@get_table');
+
+
 
     Route::get('/gymmanagers', 'GymManagersController@index')
         ->name('gymmanagers.index');
@@ -75,6 +88,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/citymanagers/{citymanager}', 'CityManagersController@destroy')
         ->name('citymanagers.destroy');
 
+    Route::get('citymanagers/image-upload', 'CityManagersController@imageUpload')->name('image.upload');
+
+    Route::post('citymanagers/image-upload', 'CityManagersController@imageUploadPost')->name('image.upload.post');
+
+
 
     Route::get('/coaches', 'CoachesController@index')
         ->name('coaches.index');
@@ -86,17 +104,8 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('coaches.edit');
     Route::put('/coaches/{coach}/update', 'CoachesController@update')
         ->name('coaches.update');
-    Route::delete('/coaches/{citymanager}', 'CoachesController@destroy')
+    Route::delete('/coaches/{coach}', 'CoachesController@destroy')
         ->name('coaches.destroy');
-
-    // Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
-    // Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
-    // Route::post('/gyms','Gyms\GymsController@store')->name('gyms.store');
-    // Route::get('/gyms/{gym}/edit','Gyms\GymsController@edit')->name('gyms.edit');
-    // Route::put('/gyms/{gym}','Gyms\GymsController@update')->name('gyms.update');
-    // Route::delete('/gyms/{gyms}','Gyms\GymsController@destroy')->name('gyms.destroy');
-    // Route::get('/gyms/{gym}','Gyms\GymsController@show')->name('gyms.show');
-    Route::Resource('gyms', 'Gyms\GymsController');
 
     Route::get('/sales', 'SalesController@index')->name('sales.index');
     Route::get('/sales/create', 'SalesController@create')->name('sales.create');
@@ -104,12 +113,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
