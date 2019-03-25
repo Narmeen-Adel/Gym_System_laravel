@@ -298,7 +298,7 @@ return [
         */
 
         'storage' => Tymon\JWTAuth\Providers\Storage\Illuminate::class,
-        'user' => 'App\Customer',
+        'user' => App\Customer::class,
 
 
     ],

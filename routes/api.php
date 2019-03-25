@@ -21,6 +21,8 @@ use Illuminate\Http\Request;
 
 //Route::post('/session/{id}/attend','Api\AttendencesController@store')->middleware('auth:api');
 
+Route::post('register', 'Api\AuthController@register');
+Route::post('login', 'Api\AuthController@login');
 
 Route::group([
 
@@ -29,10 +31,10 @@ Route::group([
 
 ], function ($router) {
 
-    Route::post('login', 'Api\AuthController@login');
+   
     Route::post('logout', 'Api\AuthController@logout');
     Route::post('refresh', 'Api\AuthController@refresh');
     Route::post('me', 'Api\AuthController@me');
-    Route::post('register', 'Api\AuthController@register');
+   
 
 });

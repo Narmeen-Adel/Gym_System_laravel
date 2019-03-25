@@ -9,8 +9,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 class Customer extends Authenticatable implements JWTSubject
 
-
-//class Customer extends Model implements JWTSubject
 {
     use Notifiable;
     protected $fillable = [
@@ -37,6 +35,7 @@ class Customer extends Authenticatable implements JWTSubject
     ];
 
 //////////////////////// for jwt authintication
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

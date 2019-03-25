@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+             // $this->middleware('auth:api', ['except' => ['login']]);
     }
 
     /**
@@ -26,7 +26,9 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function login()
-    {
+    { 
+        return response()->json(['data' => "login"]);
+
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
@@ -84,16 +86,18 @@ class AuthController extends Controller
         ]);
     }
     public function register(Request $request)
-    {
+    { dd('tesss2');
         $user= Customer::create([
              'email'    => $request->email,
-             'password' => $request->password,
+             'password' => bcrypt($request->password),
              'name' =>$request->name,
          ]);
 
-        $token = auth()->login($user);
+        // $token = auth()->login($user);
 
-        return $this->respondWithToken($token);
+        // return $this->respondWithToken($token);
+        return response()->json(['data' => $user]);
+
     }
 
 }
