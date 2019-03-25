@@ -33,7 +33,7 @@
 
          <button type="submit" class="btn btn-primary" style="display:inline; float:left;">Submit</button>
      </form>
-     <a href="{{route('packages.index')}}" class="btn btn-danger" style="display:inline; float:left; margin-left:10px;">Back</a>
+     <a href="{{route('sessions.index')}}" class="btn btn-danger" style="display:inline; float:left; margin-left:10px;">Back</a>
 
  </div>
 
