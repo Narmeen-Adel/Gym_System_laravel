@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/sessions', 'SessionsController@index')
         ->name('sessions.index');
-    Route::get('/sessionss/create', 'SessionsController@create')
+    Route::get('/sessions/create', 'SessionsController@create')
         ->name('sessions.create');
     Route::post('/sessions', 'SessionsController@store')
         ->name('sessions.store');
