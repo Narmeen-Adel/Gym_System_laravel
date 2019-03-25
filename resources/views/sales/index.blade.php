@@ -1,5 +1,7 @@
 
+@extends('layouts.admin')
 
+@section('content')
 <a href="{{route('sales.create')}}" class="btn btn-success">Create sales</a>
   <table class="table">
   <thead>
@@ -22,3 +24,5 @@
 
   </tbody>
 </table
+
+@endsection

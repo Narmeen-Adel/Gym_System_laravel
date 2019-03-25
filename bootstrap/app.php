@@ -52,4 +52,15 @@ $app->singleton(
 |
 */
 
+
+//////////////////for jwt 
+// Uncomment this line
+// $app->register(App\Providers\AuthServiceProvider::class);
+
+// Add this line
+// $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+///////////////////////////////
+
 return $app;
+
+
