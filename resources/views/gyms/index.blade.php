@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-    <h2 class="box-title">Gyms</h3><br>
+    <h2 class="box-title">Gyms</h2><br>
 
     <table id="example" class="table table-bordered table-striped">
       <thead>
@@ -32,15 +32,14 @@
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'city_id' },
+                { data: 'city_manager_id' },
                 { data: 'created_at' },
                 { data: 'updated_at' },
                {
                     mRender: function (data, type, row) {
-                        return '<a href="/gyms/'+row.id+'" class=" btn btn-info" data-id="' + row.id + '" style="margin-left:10px;">Show</a>' 
-                        + '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
+                        return '<a href="/cities/'+row.id+'" class=" btn btn-info" data-id="' + row.id + '" style="margin-left:10px;">Show</a>' 
+                        + '<a href="/cities/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
                         + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
-
                     }
                 },
               

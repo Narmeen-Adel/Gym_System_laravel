@@ -65,6 +65,7 @@ Route::get('/cities/{city}/edit', 'Cities\CitiesController@edit')->name('cities.
 Route::put('/cities/{city}', 'Cities\CitiesController@update')->name('cities.update');
 Route::delete('/gyms/{city}', 'Cities\CitiesController@destroy')->name('cities.destroy');
 Route::get('/cities/{city}', 'Cities\CitiesController@show')->name('cities.show');
+Route::get('/data_cities', 'Cities\CitiesController@get_table');
 
 Route::get('/packages', 'PackageController@index')->name('packages.index');
 Route::get('/packages/create', 'PackageController@create')->name('packages.create');
