@@ -15,7 +15,6 @@ class GymsController extends Controller
     {
         return view('gyms.index',[
             'gyms' => Gym::all()
-            //return datatables()->of(Gym::query())->toJson();
         ]);
     }
    

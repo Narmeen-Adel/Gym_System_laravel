@@ -41,10 +41,10 @@
                 { data: 'city_id' },
                 { data: 'created_at' },
                 { data: 'updated_at' },
-                /* Actions */ {
+               {
                     mRender: function (data, type, row) {
                         return '<a href="/gyms/'+row.id+'" class=" btn btn-info" data-id="' + row.id + '" style="margin-left:10px;">Show</a>' 
-                        + '<a href="/gyms/'+row.id+'/edit" class=" btn btn-warning" data-id="' + row.id + '" style="margin-left:10px;">EDIT</a>' 
+                        + '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;">EDIT</a>' 
                         + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;">DELETE</a>'
 
                     }

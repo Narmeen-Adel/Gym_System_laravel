@@ -8,7 +8,7 @@
             </ul>
         </div>
     @endif
-<a href="{{route('gyms.index')}}" class="btn btn-danger">Back</a>
+<a href="{{route('gyms.index')}}" class="btn btn-primary">Back</a>
 
    <form action="{{route('gyms.store')}}" method="POST">
        @csrf
