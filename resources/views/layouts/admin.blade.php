@@ -132,7 +132,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">Admin</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#"><i class="fa fa-users"></i> <span>City Managers</span></a></li>
+                    <li class="active"><a href="{{route('citymanagers.index')}}"><i class="fa fa-users"></i> <span>City Managers</span></a></li>
                     <li><a href="#"><i class="fa fa-users"></i> <span>Gym Managers</span></a></li>
                     <li><a href="#"><i class="fa fa-users"></i> <span>Users</span></a></li>
                     <li><a href="#"><i class="fa fa-globe "></i> <span>Cities</span></a></li>
