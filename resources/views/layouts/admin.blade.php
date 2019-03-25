@@ -139,8 +139,6 @@
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">Admin</li>
-                    <!-- Optionally, you can add icons to the links -->
                     @role('admin')
                     <li class="active"><a href="#"><i class="fa fa-users"></i> <span>City Managers</span></a></li>
                     <li><a href="#"><i class="fa fa-users"></i> <span>Users</span></a></li>
