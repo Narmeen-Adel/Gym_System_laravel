@@ -88,6 +88,11 @@ Route::put('/citymanagers/{citymanager}/update','CityManagersController@update')
 Route::delete('/citymanagers/{citymanager}','CityManagersController@destroy')
     ->name('citymanagers.destroy');
 
+Route::get('citymanagers/image-upload', 'CityManagersController@imageUpload')->name('image.upload');
+
+Route::post('citymanagers/image-upload', 'CityManagersController@imageUploadPost')->name('image.upload.post');
+
+
 
 Route::get('/coaches', 'CoachesController@index')
     ->name('coaches.index');
