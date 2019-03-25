@@ -7,14 +7,15 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-//class User extends Authenticatable implements JWTSubject
+class Customer extends Authenticatable implements JWTSubject
 
 
-class Customer extends Model implements JWTSubject
+//class Customer extends Model implements JWTSubject
 {
     use Notifiable;
     protected $fillable = [
-        'name', 'email', 'password','date_of_birth','gender','image'
+        'name', 'email', 'password',
+        //'date_of_birth','gender','image'
     ];
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //////////////////
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Customer;
 
 class AuthController extends Controller
 {
@@ -82,5 +83,18 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
+    public function register(Request $request)
+    {
+        $user= Customer::create([
+             'email'    => $request->email,
+             'password' => $request->password,
+             'name' =>$request->name,
+         ]);
+
+        $token = auth()->login($user);
+
+        return $this->respondWithToken($token);
+    }
+
 }
 
