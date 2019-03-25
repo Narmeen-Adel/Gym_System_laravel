@@ -17,8 +17,6 @@ class CreateAttendanceTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedbigInteger('session_id')->nullable();
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
-            $table->unsignedbigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

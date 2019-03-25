@@ -23,8 +23,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('national_id')->nullable()->unique();
             $table->string('image')->nullable()->default('myimage.jpg');
-            $table->string('gender')->nullable();
-            $table->date('date_of_birth')->nullable();
             $table->boolean('is_ban')->nullable();
             $table->tinyInteger('position')->nullable()->default(0);
         });
