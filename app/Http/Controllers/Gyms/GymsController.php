@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Gyms;
 
 use App\Gym;
 use App\User;
+use App\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 
 class GymsController extends Controller
 {
@@ -13,14 +15,15 @@ class GymsController extends Controller
     {
         return view('gyms.index',[
             'gyms' => Gym::all()
+            //return datatables()->of(Gym::query())->toJson();
         ]);
     }
    
     public function create()
     {
-        $users = User::all();
+        $cities = City::all();
         return view('gyms.create',[
-            'users' => $users
+            'cities' => $cities
         ]);
     }
 
@@ -54,5 +57,9 @@ class GymsController extends Controller
         return view('gyms.show', [
             'gym' => $gym,
         ]);
-    }     
+    }  
+    
+    public function get_table(){
+        return datatables()->of(Gym::query())->toJson();
+    }
 }

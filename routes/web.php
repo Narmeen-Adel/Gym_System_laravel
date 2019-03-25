@@ -30,15 +30,8 @@ Route::put('/sessions/{session}/update', 'SessionsController@update')
     ->name('sessions.update');
 Route::get('/sessions/{session}/show', 'SessionsController@show')
     ->name('sessions.show');
-<<<<<<< HEAD
-Route::delete('/sessions/{session}', 'SessionsController@destroy')
-    ->name('sessions.destroy');
-Route::get('/sessions/error', 'SessionsController@error')
-    ->name('sessions.error');
-=======
 Route::delete('/sessions/{session}','SessionsController@destroy')
     ->name('sessions.destroy');       
->>>>>>> 32ae4921133e24c18fcea017b89aa9d9fd933141
 
 Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
 Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
@@ -47,6 +40,7 @@ Route::get('/gyms/{gym}/edit', 'Gyms\GymsController@edit')->name('gyms.edit');
 Route::put('/gyms/{gym}', 'Gyms\GymsController@update')->name('gyms.update');
 Route::delete('/gyms/{gyms}', 'Gyms\GymsController@destroy')->name('gyms.destroy');
 Route::get('/gyms/{gym}', 'Gyms\GymsController@show')->name('gyms.show');
+Route::get('/data_gyms', 'Gyms\GymsController@get_table');
 
 Route::get('/packages', 'PackageController@index')->name('packages.index');
 Route::get('/packages/create', 'PackageController@create')->name('packages.create');
@@ -54,3 +48,6 @@ Route::post('/packages', 'PackageController@store')->name('packages.store');
 Route::get('/packages/{package}/edit', 'PackageController@edit')->name('packages.edit');
 Route::delete('/packages/{package}', 'PackageController@delete')->name('packages.delete');
 Route::put('/packages/{package}', 'PackageController@update')->name('packages.update');
+
+
+
