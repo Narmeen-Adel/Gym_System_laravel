@@ -96,7 +96,16 @@
                         <img src="/bower_components/admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
+
+                        @role('admin')
                         <p>Admin</p>
+                        @endrole
+                        @role('city_manager')
+                        <p>City Manager</p>
+                        @endrole
+                        @role('gym_manager')
+                        <p>Gym Manager</p>
+                        @endrole
                         <!-- Status -->
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
@@ -118,16 +127,23 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">Admin</li>
                     <!-- Optionally, you can add icons to the links -->
+                    @role('admin')
                     <li class="active"><a href="#"><i class="fa fa-users"></i> <span>City Managers</span></a></li>
-                    <li><a href="#"><i class="fa fa-users"></i> <span>Gym Managers</span></a></li>
                     <li><a href="#"><i class="fa fa-users"></i> <span>Users</span></a></li>
                     <li><a href="#"><i class="fa fa-globe "></i> <span>Cities</span></a></li>
-                    <li><a href="{{route('gyms.index')}}"><i class="fa fa-building-o"></i> <span>Gyms</span></a></li>
                     <li><a href="{{route('packages.index')}}"><i class="fa fa-th "></i> <span>Training Packages</span></a></li>
                     <li><a href="#"><i class="fa fa-user"></i> <span>Coaches</span></a></li>
+                    @endrole
+                    @role('admin|city_manager')
+                    <li><a href="#"><i class="fa fa-users"></i> <span>Gym Managers</span></a></li>
+                    <li><a href="{{route('gyms.index')}}"><i class="fa fa-building-o"></i> <span>Gyms</span></a></li>
+                    @endrole
+
+                    @role('admin|city_manager|gym_manager')
                     <li><a href="#"><i class="fa fa-list-alt"></i> <span>Attendace</span></a></li>
                     <li><a href="#"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
                     <li><a href="#"><i class="fa  fa-line-chart "></i> <span>Revenues</span></a></li>
+                    @endrole
 
                     <!-- <li class="treeview">
                         <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
