@@ -25,8 +25,9 @@ class HasUsersSessionRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $hasUsers=Attendence::where('session_id',$value)->get();
+        $hasUsers=Attendance::select('select * from attendance where session_id=:id',['id'=>$session->id]);
         $arr=$hasUsers->pluck('id')->toArray();
+        dd($arr);
         if($arr!=[]){
             return false;
         }else{
@@ -42,6 +43,6 @@ class HasUsersSessionRule implements Rule
      */
     public function message()
     {
-        return 'Can not Delete This Session';
+        return 'Can not Deal with This Session it has users';
     }
 }

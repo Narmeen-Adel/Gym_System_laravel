@@ -125,6 +125,7 @@
                     <li><a href="{{route('gyms.index')}}"><i class="fa fa-building-o"></i> <span>Gyms</span></a></li>
                     <li><a href="{{route('packages.index')}}"><i class="fa fa-th "></i> <span>Training Packages</span></a></li>
                     <li><a href="#"><i class="fa fa-user"></i> <span>Coaches</span></a></li>
+                    <li><a href="{{route('sessions.index')}}"><i class="fa fa-user"></i> <span>Training Sessions</span></a></li>
                     <li><a href="#"><i class="fa fa-list-alt"></i> <span>Attendace</span></a></li>
                     <li><a href="#"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
                     <li><a href="#"><i class="fa  fa-line-chart "></i> <span>Revenues</span></a></li>
