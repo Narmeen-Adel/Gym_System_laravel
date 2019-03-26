@@ -9,6 +9,7 @@
                 <th>name</th>
                 <th>Email</th>
                 <th>National_Id</th>
+                <th>Options</th >
             </tr>
         </thead>
     </table>
@@ -50,7 +51,7 @@
         /*------------------------------------------------------*/
     </script>
 
-    <a class="btn btn-info" href="{{route('citymanagers.create')}}"><i class="fa fa-plus"></i><span>Add New CityManager</span></a>
+    <a class="btn btn-info" href="{{route('citymanagers.create')}}"><i class="fa fa-plus"></i><span>Add New City Manager</span></a>
 
 </div>
 

@@ -1,14 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "79481c808655a8e2bf8d55de99294fd7",
-=======
-    "content-hash": "cb0eae9c5139436459532d0faee7ec96",
->>>>>>> 97e5c9c68a1e4173c8ef25b2f594b1e51f32c2be
+    "content-hash": "b5b83b9cad73c3dedf7ae9f6071e62e7",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2387,7 +2383,6 @@
                 "shim"
             ],
             "time": "2019-02-06T07:57:58+00:00"
-<<<<<<< HEAD
         },
         {
             "name": "symfony/polyfill-php56",
@@ -2444,8 +2439,6 @@
                 "shim"
             ],
             "time": "2019-02-06T07:57:58+00:00"
-=======
->>>>>>> 97e5c9c68a1e4173c8ef25b2f594b1e51f32c2be
         },
         {
             "name": "symfony/polyfill-php72",
@@ -2878,7 +2871,7 @@
         },
         {
             "name": "tymon/jwt-auth",
-            "version": "1.0.0-rc.4.1",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
@@ -3057,16 +3050,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v9.0.0",
+            "version": "v9.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "bbc9943208e121d551fed74ad1084c4e42ccf094"
+                "reference": "0c5764bcb436b2ac4627246fc29970c69314be1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/bbc9943208e121d551fed74ad1084c4e42ccf094",
-                "reference": "bbc9943208e121d551fed74ad1084c4e42ccf094",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/0c5764bcb436b2ac4627246fc29970c69314be1e",
+                "reference": "0c5764bcb436b2ac4627246fc29970c69314be1e",
                 "shasum": ""
             },
             "require": {
@@ -3124,7 +3117,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2019-02-27T03:04:53+00:00"
+            "time": "2019-03-26T05:04:50+00:00"
         }
     ],
     "packages-dev": [
@@ -4895,7 +4888,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "webpatser/laravel-countries": 20
+        "webpatser/laravel-countries": 20,
+        "tymon/jwt-auth": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

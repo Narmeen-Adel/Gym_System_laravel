@@ -87,7 +87,7 @@ Route::put('/citymanagers/{citymanager}/update','CityManagersController@update')
     ->name('citymanagers.update');
 Route::delete('/citymanagers/{citymanager}','CityManagersController@destroy')
     ->name('citymanagers.destroy');
-Route::get('/data_pcitymanagers', 'PackageController@get_table');
+Route::get('/data_citymanagers', 'CityManagersController@get_table');
 
 
 
