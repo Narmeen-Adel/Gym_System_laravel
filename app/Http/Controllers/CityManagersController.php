@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\City;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 class CityManagersController extends Controller
 {
     public function index()
@@ -25,7 +27,25 @@ class CityManagersController extends Controller
 
     public function store(Request $request)
     {
-        User::create($request->all());
+        request()->validate([
+            'name'=>'required',
+            'email'=>'required|unique:users',
+            'national_id'=>'required|unique:users',
+            //'image'=>'mimes:jpeg,jpg',
+        ]);
+        $image=$request->file('image');
+        //$extension=$image->getClientOriginalExtension();
+        //Storage::disk('public')->put($image->getFilename(), File::get($image));
+        $citymanager = new User();
+        $citymanager->name = $request->name;
+        $citymanager->email = $request->email;
+        $citymanager->password = bcrypt($request->password);
+        $citymanager->national_id = $request->national_id;
+        $citymanager->position=$request->position;
+        //$citymanager->image = $image->getFilename();
+        $citymanager->save();
+
+        //User::create($request->all());
         return redirect()->route('citymanagers.index');
     }
 

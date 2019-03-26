@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Cities;
 
+use App\User;
+use App\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -52,5 +54,9 @@ class CitiesController extends Controller
         return view('cities.show', [
             'city' => $city,
         ]);
-    }     
+    } 
+    
+    public function get_table(){
+        return datatables()->of(City::query())->toJson();
+    }
 }

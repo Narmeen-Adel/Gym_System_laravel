@@ -29,7 +29,24 @@ class GymManagersController extends Controller
 
     public function store(Request $request)
     {
-        User::create($request->all());
+        request()->validate([
+            'name'=>'required',
+            'email'=>'required|unique:users',
+            'national_id'=>'required|unique:users',
+            //'image'=>'mimes:jpeg,jpg',
+        ]);
+        $image=$request->file('image');
+        //$extension=$image->getClientOriginalExtension();
+        //Storage::disk('public')->put($image->getFilename(), File::get($image));
+        $gymmanager = new User();
+        $gymmanager->name = $request->name;
+        $gymmanager->email = $request->email;
+        $gymmanager->password = bcrypt($request->password);
+        $gymmanager->national_id = $request->national_id;
+        $gymmanager->position=$request->position;
+        //$gymmanager->image = $image->getFilename();
+        $gymmanager->save();
+        //User::create($request->all());
         return redirect()->route('gymmanagers.index');
     }
 
