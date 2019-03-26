@@ -134,7 +134,7 @@
                     <!-- Optionally, you can add icons to the links -->
                     <li class="active"><a href="{{route('citymanagers.index')}}"><i class="fa fa-users"></i> <span>City Managers</span></a></li>
                     <li><a href="#"><i class="fa fa-users"></i> <span>Gym Managers</span></a></li>
-                    <li><a href="#"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                    <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> <span>Users</span></a></li>
                     <li><a href="{{route('cities.index')}}"><i class="fa fa-globe "></i> <span>Cities</span></a></li>
                     <li><a href="{{route('gyms.index')}}"><i class="fa fa-building-o"></i> <span>Gyms</span></a></li>
                     <li><a href="{{route('packages.index')}}"><i class="fa fa-th "></i> <span>Training Packages</span></a></li>

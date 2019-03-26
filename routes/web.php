@@ -108,6 +108,10 @@ Route::get('/sales', 'SalesController@index')->name('sales.index');
 Route::get('/sales/create','SalesController@create')->name('sales.create');
 Route::post('/sales', 'SalesController@store')->name('sales.store');
 
+Route::get('/customers', 'CustomerController@index')->name('customers.index');
+Route::get('/data_customers', 'CustomerController@get_table');
+
+
 });
 
 Auth::routes();
