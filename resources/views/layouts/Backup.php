@@ -8,7 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+    <!--------------------------->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/r-2.2.2/datatables.min.css"/> --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--------------------------->
 
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
@@ -16,12 +21,13 @@
     <link rel="stylesheet" href="/bower_components/admin-lte/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="/bower_components/admin-lte/dist/css/skins/skin-blue.min.css">
 
+        <!--------------------------->
 
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/r-2.2.2/datatables.min.css"/> --}}
+
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    <!--------------------------->
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/r-2.2.2/datatables.min.css"/> --}}
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,9 +39,6 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <link href="/bower_components/admin-lte/dist/css/admin.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/r-2.2.2/datatables.min.css"/> --}}
 </head>
 
 
@@ -107,7 +110,16 @@
                         <img src="/bower_components/admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
+
+                        @role('admin')
                         <p>Admin</p>
+                        @endrole
+                        @role('city_manager')
+                        <p>City Manager</p>
+                        @endrole
+                        @role('gym_manager')
+                        <p>Gym Manager</p>
+                        @endrole
                         <!-- Status -->
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
@@ -127,18 +139,23 @@
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">Admin</li>
-                    <!-- Optionally, you can add icons to the links -->
+                    @role('admin')
                     <li class="active"><a href="#"><i class="fa fa-users"></i> <span>City Managers</span></a></li>
-                    <li><a href="#"><i class="fa fa-users"></i> <span>Gym Managers</span></a></li>
                     <li><a href="#"><i class="fa fa-users"></i> <span>Users</span></a></li>
                     <li><a href="#"><i class="fa fa-globe "></i> <span>Cities</span></a></li>
-                    <li><a href="{{route('gyms.index')}}"><i class="fa fa-building-o"></i> <span>Gyms</span></a></li>
                     <li><a href="{{route('packages.index')}}"><i class="fa fa-th "></i> <span>Training Packages</span></a></li>
                     <li><a href="#"><i class="fa fa-user"></i> <span>Coaches</span></a></li>
+                    @endrole
+                    @role('admin|city_manager')
+                    <li><a href="#"><i class="fa fa-users"></i> <span>Gym Managers</span></a></li>
+                    <li><a href="{{route('gyms.index')}}"><i class="fa fa-building-o"></i> <span>Gyms</span></a></li>
+                    @endrole
+
+                    @role('admin|city_manager|gym_manager')
                     <li><a href="#"><i class="fa fa-list-alt"></i> <span>Attendace</span></a></li>
-                    <li><a href="#"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
+                    <li><a href="{{route('sales.index')}}"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
                     <li><a href="#"><i class="fa  fa-line-chart "></i> <span>Revenues</span></a></li>
+                    @endrole
 
                     <!-- <li class="treeview">
                         <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -283,11 +300,16 @@
     <!-- AdminLTE App -->
     <script src="/bower_components/admin-lte/dist/js/adminlte.min.js"></script>
 
+    <!--------------------------->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </body>
 
 </html>
