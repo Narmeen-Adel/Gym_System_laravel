@@ -12,8 +12,7 @@ class Customer extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     protected $fillable = [
-        'name', 'email', 'password',
-        //'date_of_birth','gender','image'
+        'name', 'email', 'password','gender','confirm_password'//'image','date_of_birth',
     ];
 
     /**
@@ -36,13 +35,18 @@ class Customer extends Authenticatable implements JWTSubject
 
 //////////////////////// for jwt authintication
 
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
+public function getJWTIdentifier()
+{
+    return $this->getKey();
+}
 
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
+/**
+ * Return a key value array, containing any custom claims to be added to the JWT.
+ *
+ * @return array
+ */
+public function getJWTCustomClaims()
+{
+    return [];
+}
 }

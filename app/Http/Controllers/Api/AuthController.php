@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Customer\StoreCustomerRequest;
+use App\Http\Requests\Customer\UpdateCustomerRequest;
+
 //////////////////
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -10,14 +13,10 @@ use App\Customer;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
+   
     public function __construct()
     {
-             // $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     /**
@@ -26,12 +25,11 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function login()
-    { 
-        return response()->json(['data' => "login"]);
-
+    {
         $credentials = request(['email', 'password']);
-
+            
         if (! $token = auth()->attempt($credentials)) {
+        dd(auth()->attempt($credentials));
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -85,18 +83,47 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
-    public function register(Request $request)
-    { dd('tesss2');
-        $user= Customer::create([
-             'email'    => $request->email,
-             'password' => bcrypt($request->password),
-             'name' =>$request->name,
-         ]);
+    public function register(StoreCustomerRequest $request)
+    {    
+        //  dd('tesss2');
+        // return response()->json(['data' => "jkjk"]);
 
-        // $token = auth()->login($user);
+      
+        // $user= Customer::create([
+        //      'email'    => $request->email,
+        //      'password' => bcrypt($request->password),
+        //      'name' =>$request->name,
+        //  ]);
+          $user=Customer::create($request->all());
+        
 
-        // return $this->respondWithToken($token);
-        return response()->json(['data' => $user]);
+         $token = auth()->login($user);
+        // dd($token);
+        return $this->respondWithToken($token);
+        //return response()->json(['data' => $user]);
+
+    }
+    public function update(UpdateCustomerRequest $request)
+    {    
+
+
+        DB::table('customers')
+            ->where('email', $request->email)
+            ->update(['password' => bcrypt($request->password),
+            'name' => $request->name,
+            'date_of_birth '=>$request->date_of_birth,
+            'gender' =>$request->gender]);
+            
+            return $this->response("data is updated");
+
+        //dd("update");
+        $customer->update($request->all());
+        // $user= Customer::create([
+        //      'email'    => $request->email,
+        //      'password' => bcrypt($request->password),
+        //      'name' =>$request->name,
+        //  ]);
+        return response()->json(auth()->user());
 
     }
 
