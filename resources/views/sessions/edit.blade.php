@@ -10,7 +10,7 @@
          @method('PUT')
          <div class="form-group">
              <label>Name</label>
-             <input name="name" value="{{$session->name}}" type="text" class="form-control">
+             <input name="name" value="{{$session->name}}" type="text" class="form-control"  disabled>
          </div>
          <div class="form-group">
              <label>Session Day</label>

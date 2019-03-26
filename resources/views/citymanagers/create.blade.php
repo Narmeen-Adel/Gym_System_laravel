@@ -31,6 +31,10 @@
         <div class="form-group">
             <input name="position" type="hidden" value=2 class="form-control" />
         </div>
+        <div class="form-group">
+            <input name="image" type="file" class="form-control" />
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="{{route('citymanagers.index')}}" class="btn btn-danger">Back</a>
