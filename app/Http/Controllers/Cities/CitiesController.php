@@ -18,7 +18,7 @@ class CitiesController extends Controller
    
     public function create()
     {
-        $users = User::all();
+        $users = User::where('position',2)->get();
         return view('cities.create',[
             'users' => $users
         ]);
