@@ -111,6 +111,8 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('coaches.update');
         Route::delete('/coaches/{coach}', 'CoachesController@destroy')
             ->name('coaches.destroy');
+        Route::get('/data_coaches', 'CoachesController@get_table');
+
     });
 
     Route::get('/sales', 'SalesController@index')->name('sales.index');
