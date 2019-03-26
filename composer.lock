@@ -4,12 +4,80 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "79481c808655a8e2bf8d55de99294fd7",
-=======
-    "content-hash": "cb0eae9c5139436459532d0faee7ec96",
->>>>>>> 97e5c9c68a1e4173c8ef25b2f594b1e51f32c2be
+    "content-hash": "30f2c68fa6b297abb8658e097cc9750d",
     "packages": [
+        {
+            "name": "cybercog/laravel-ban",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cybercog/laravel-ban.git",
+                "reference": "f99bdc90bebc7d2b8a01166ea8f68abaab2d74f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cybercog/laravel-ban/zipball/f99bdc90bebc7d2b8a01166ea8f68abaab2d74f3",
+                "reference": "f99bdc90bebc7d2b8a01166ea8f68abaab2d74f3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.5.*|5.6.*|5.7.*|5.8.*",
+                "illuminate/events": "5.5.*|5.6.*|5.7.*|5.8.*",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.10",
+                "mockery/mockery": "^1.0",
+                "orchestra/database": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Cog\\Laravel\\Ban\\Providers\\BanServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cog\\Contracts\\Ban\\": "contracts/",
+                    "Cog\\Laravel\\Ban\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Komarev",
+                    "email": "a.komarev@cybercog.su",
+                    "homepage": "http://ell.folio.su",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Ban simplify blocking and banning Eloquent models.",
+            "homepage": "https://github.com/cybercog/laravel-ban",
+            "keywords": [
+                "Justice",
+                "arrest",
+                "ban",
+                "block",
+                "cog",
+                "cybercog",
+                "eloquent",
+                "forbid",
+                "jail",
+                "laravel",
+                "restrict",
+                "trait",
+                "user"
+            ],
+            "time": "2019-02-26T21:01:13+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -2152,16 +2220,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.11.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "82ebae02209c21113908c229e9883c419720738a"
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
-                "reference": "82ebae02209c21113908c229e9883c419720738a",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
                 "shasum": ""
             },
             "require": {
@@ -2173,7 +2241,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -2195,7 +2263,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -2206,7 +2274,7 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2018-08-06T14:22:27+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
@@ -2331,16 +2399,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.11.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609"
+                "reference": "c79c051f5b3a46be09205c73b80b346e4153e494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fe5e94c604826c35a32fa832f35bd036b6799609",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/c79c051f5b3a46be09205c73b80b346e4153e494",
+                "reference": "c79c051f5b3a46be09205c73b80b346e4153e494",
                 "shasum": ""
             },
             "require": {
@@ -2352,7 +2420,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -2386,8 +2454,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
-<<<<<<< HEAD
+            "time": "2018-09-21T13:07:52+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
@@ -2444,8 +2511,6 @@
                 "shim"
             ],
             "time": "2019-02-06T07:57:58+00:00"
-=======
->>>>>>> 97e5c9c68a1e4173c8ef25b2f594b1e51f32c2be
         },
         {
             "name": "symfony/polyfill-php72",
@@ -2878,7 +2943,7 @@
         },
         {
             "name": "tymon/jwt-auth",
-            "version": "1.0.0-rc.4.1",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
@@ -3057,16 +3122,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v9.0.0",
+            "version": "v9.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "bbc9943208e121d551fed74ad1084c4e42ccf094"
+                "reference": "0c5764bcb436b2ac4627246fc29970c69314be1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/bbc9943208e121d551fed74ad1084c4e42ccf094",
-                "reference": "bbc9943208e121d551fed74ad1084c4e42ccf094",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/0c5764bcb436b2ac4627246fc29970c69314be1e",
+                "reference": "0c5764bcb436b2ac4627246fc29970c69314be1e",
                 "shasum": ""
             },
             "require": {
@@ -3124,7 +3189,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2019-02-27T03:04:53+00:00"
+            "time": "2019-03-26T05:04:50+00:00"
         }
     ],
     "packages-dev": [
@@ -4895,6 +4960,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tymon/jwt-auth": 20,
         "webpatser/laravel-countries": 20
     },
     "prefer-stable": true,
