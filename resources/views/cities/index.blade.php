@@ -25,7 +25,7 @@
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'city_manager_id' },
+                { data: 'user.name' },
                 { data: 'created_at' },
                 {
                   mRender: function (data, type, row) {

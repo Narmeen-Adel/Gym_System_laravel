@@ -9,8 +9,8 @@
         <tr>
           <th>Id</th>
           <th>Name</th>
-          <th>City</th>
-          <th>Created At</th>
+          <th>Cover Image</th>
+          <th>City Manager</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -31,8 +31,8 @@
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'city_id' },
-                { data: 'created_at' },
+                { data: 'user.name' },
+                { data: 'cover_image' },
                {
                     mRender: function (data, type, row) {
                         return '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 

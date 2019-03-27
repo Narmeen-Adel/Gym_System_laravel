@@ -22,8 +22,11 @@ class GymsController extends Controller
     public function create()
     {
         $cities = City::all();
+        //to get current user
+        $user = auth()->user();
         return view('gyms.create',[
-            'cities' => $cities
+            'cities' => $cities,
+            'user' => $user
         ]);
     }
 
@@ -60,6 +63,6 @@ class GymsController extends Controller
     }  
     
     public function get_table(){
-        return datatables()->of(Gym::query())->toJson();
+        return datatables()->of(Gym::with('City','User'))->toJson();
     }
 }
