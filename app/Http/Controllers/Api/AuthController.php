@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Requests\Customer\StoreCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
-
+use App\Http\Requests\Attendance\StoreAttendanceRequest;
+use App\Attendance;
 //////////////////
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -28,8 +29,8 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
             
-        if (! $token = auth()->attempt($credentials)) {
-        dd(auth()->attempt($credentials));
+        if (! $token = auth('api')->attempt($credentials)) {
+        //dd(auth('api')->attempt($credentials));
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -43,7 +44,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return response()->json(auth('api')->user());
     }
 
     /**
@@ -53,7 +54,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth()->logout();
+        auth('api')->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -65,7 +66,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(auth('api')->refresh());
     }
 
     /**
@@ -76,54 +77,43 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     protected function respondWithToken($token)
-    {
-        return response()->json([
+    {  
+            return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
     public function register(StoreCustomerRequest $request)
     {    
-        //  dd('tesss2');
-        // return response()->json(['data' => "jkjk"]);
-
       
-        // $user= Customer::create([
-        //      'email'    => $request->email,
-        //      'password' => bcrypt($request->password),
-        //      'name' =>$request->name,
-        //  ]);
-          $user=Customer::create($request->all());
-        
+         //$user=Customer::create($request->all());
+         $user=Customer::create(['name' => $request->name,'email'=>$request->email,
+         'password'=>bcrypt($request->password),'date_of_birth'=>$request->date_of_birth]);
 
-         $token = auth()->login($user);
-        // dd($token);
-        return $this->respondWithToken($token);
-        //return response()->json(['data' => $user]);
+         $token = auth('api')->login($user);
+         return $this->respondWithToken($token);
+//////////////////////////////////////////////////////
+
+
+
 
     }
     public function update(UpdateCustomerRequest $request)
-    {    
+    { 
+        Customer::find(auth('api')->user()->id)->update(['name' => $request->name,'email'=>$request->email,
+        'password'=>bcrypt($request->password),'date_of_birth'=>$request->date_of_birth]);
+         return response()->json(['message'=>"your updated successfully"]);
 
+    }
 
-        DB::table('customers')
-            ->where('email', $request->email)
-            ->update(['password' => bcrypt($request->password),
-            'name' => $request->name,
-            'date_of_birth '=>$request->date_of_birth,
-            'gender' =>$request->gender]);
-            
-            return $this->response("data is updated");
-
-        //dd("update");
-        $customer->update($request->all());
-        // $user= Customer::create([
-        //      'email'    => $request->email,
-        //      'password' => bcrypt($request->password),
-        //      'name' =>$request->name,
-        //  ]);
-        return response()->json(auth()->user());
+    public function store(StoreAttendanceRequest $request)
+    {
+       //dd($request->session_id);
+       Attendance::create(["session_id" => $request->session_id,"customer_id" =>auth('api')->user()->id]);
+       return response()->json([
+        'message' => 'you are register to that  session '
+    ],201);
 
     }
 

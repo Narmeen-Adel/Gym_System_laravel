@@ -5,14 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class Customer extends Authenticatable implements JWTSubject
+class Customer extends Authenticatable implements JWTSubject ,MustVerifyEmail
 
 {
     use Notifiable;
     protected $fillable = [
-        'name', 'email', 'password','gender','confirm_password'//'image','date_of_birth',
+        'name', 'email', 'password','gender','confirm_password','date_of_birth',//'image',
     ];
 
     /**

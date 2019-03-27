@@ -27,7 +27,7 @@ class UpdateCustomerRequest extends FormRequest
             'name'=>'required |min:9',
              'email'=>'email|required_with:Customer',
             'password'=>'required|min:8',
-            //'date_of_birth'=>'date|required|',//after:strtotime(1/1/1930)|before:strtotime(1/1/2015)',
+            'date_of_birth'=>'date:Y-m-d',//after:strtotime(1/1/1930)|before:strtotime(1/1/2015)',
             'gender'=>'in:male,female',
             //'image'=>'',
             
@@ -44,8 +44,8 @@ class UpdateCustomerRequest extends FormRequest
         'email.unique'=>"email must be nique ",
         'password.required'=>" insert password  ",
         'password.min'=>"password is short", 
-        //'date_of_birth.format'=>"d/m/y",
-        'date_of_birth.after'=>"not valide date",
+        'date_of_birth.date'=>"d/m/y",
+        //'date_of_birth.after'=>"not valide date",
         'gender'=>"not valid gender"
     ];
     }

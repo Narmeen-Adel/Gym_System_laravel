@@ -26,7 +26,7 @@ Route::post('login', 'Api\AuthController@login');
 
 Route::group([
 
-    'middleware' => 'auth',
+    'middleware' => ['auth:api'],
     'prefix' => 'auth'
 
 ], function ($router) {
@@ -36,6 +36,8 @@ Route::group([
     Route::post('refresh', 'Api\AuthController@refresh');
     Route::post('me', 'Api\AuthController@me');
     Route::post('update', 'Api\AuthController@update');
+    Route::post('session/{id}/attend','Api\AuthController@store');
    
 
 });
+//Auth::routes(['verify' => true]);

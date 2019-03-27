@@ -5,11 +5,15 @@ use App\Attendence;
 use App\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller\AuthController;
 
 class AttendancesController extends Controller
 {
     
+    // public function __construct(AuthController $auth){
+    //     dd($auth->me());
 
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -17,9 +21,15 @@ class AttendancesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function store(Request $request)
     {
-       Attendence ::create($request->all()) ;
+        dd("hhhh");
+       Attendence::create(["session_id"=>$request->session_id,"user_id" =>auth()->user()->id]);
        return response()->json([
         'message' => 'you are register to that  session '
     ],201);

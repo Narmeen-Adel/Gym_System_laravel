@@ -10,6 +10,17 @@ class Attendance extends Model
         'session_id ',
         'customer_id',
     
+    
     ];
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+
+    }
+
+    public function session(){
+        return $this->belongsTo(Session::class);
+
+    }
+   
 
 }
