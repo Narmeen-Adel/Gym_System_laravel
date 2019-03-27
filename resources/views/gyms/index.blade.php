@@ -9,13 +9,15 @@
         <tr>
           <th>Id</th>
           <th>Name</th>
+          @role('admin')
           <th>City Manager</th>
+          @endrole
           <th>Cover Image</th>
           <th>Actions</th>
         </tr>
       </thead>
-    </table>                 
-      
+    </table>
+
   <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
         $('#example').DataTable( {
@@ -35,11 +37,11 @@
                 { data: 'cover_image' },
                {
                     mRender: function (data, type, row) {
-                        return '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
+                        return '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>'
                         + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
                     }
                 },
-              
+
             ],
             'paging'      : true,
             'lengthChange': true,
@@ -50,10 +52,10 @@
         } );
         /*------------------------------------------------------*/
     </script>
-    <a href='/gyms/create' style="margin-top: 10px;" class="btn btn-info"><i class="fa fa-plus"></i><span>Add New Gym</span></a>                   
+    <a href='/gyms/create' style="margin-top: 10px;" class="btn btn-info"><i class="fa fa-plus"></i><span>Add New Gym</span></a>
 
 
-</div>  
+</div>
 
 @endsection
 
