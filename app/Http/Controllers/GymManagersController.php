@@ -6,11 +6,21 @@ use App\Gym;
 use App\City;
 
 use Illuminate\Http\Request;
+use Auth;
+use DB;
 
 class GymManagersController extends Controller
 {
     public function index()
     {
+        $data = DB::table('users')
+        ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+        ->select(
+            'users.id',
+            'users.name'
+        )->where('model_has_roles.role_id','=',3)
+        ->get();
+        // dd($data);
         return view('gymmanagers.index', [
             'gymmanagers' => User::where('position',3)->get()
         ]);
