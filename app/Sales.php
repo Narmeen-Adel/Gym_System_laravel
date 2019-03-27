@@ -13,14 +13,5 @@ class Sales extends Pivot
         'user_id '
     ];
 
-    // public function package()
-    // {
-    //     return $this->hasMany('App\Package');
-    // }
-
-    // public function user()
-    // {
-    //     return $this->hasMany('App\User');
-    // }
 
 }
