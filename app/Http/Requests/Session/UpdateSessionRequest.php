@@ -30,7 +30,7 @@ class UpdateSessionRequest extends FormRequest
             'coach_id' => 'exists:coaches,id',
             'gym_id' => 'exists:gyms,id',
             'package_id' => 'exists:packages,id',
-            'starts_at'=>'after:finishes_at'
+            'finishes_at'=>'after:starts_at'
         ];
     }
     public function messages()
