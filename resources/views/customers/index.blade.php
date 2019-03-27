@@ -14,8 +14,8 @@
           <th>Gender</th>
         </tr>
       </thead>
-    </table>                 
-      
+    </table>
+
   <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
         $('#example').DataTable( {
@@ -35,7 +35,7 @@
                 { data: 'date_of_birth' },
                 { data: 'gender' },
 
-              
+
             ],
             'paging'      : true,
             'lengthChange': true,
@@ -48,7 +48,7 @@
     </script>
 
 
-</div>  
+</div>
 
 @endsection
 
