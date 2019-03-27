@@ -31,6 +31,7 @@ class StoreSessionRequest extends FormRequest
             'coach_id' => 'exists:coaches,id',
             'gym_id' => 'exists:gyms,id',
             'package_id' => 'exists:packages,id',
+            'starts_at'=>'after:finishes_at'
         ];
     }
     public function messages()
@@ -41,6 +42,7 @@ class StoreSessionRequest extends FormRequest
             'couch_id.exists'=>'This Id is not Exists please enter valid coach id',
             'gym_id.exists'=>'This Id is not Exists please enter valid gym id',
             'package_id.exists'=>'This Id is not Exists please enter valid package id',
+            'starts_at.after'=>'The finshes_at time of the session must be after its start time',
 
         ];
     }
