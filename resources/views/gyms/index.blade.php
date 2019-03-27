@@ -11,7 +11,6 @@
           <th>Name</th>
           <th>City</th>
           <th>Created At</th>
-          <th>Updated At</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -34,7 +33,6 @@
                 { data: 'name' },
                 { data: 'city_id' },
                 { data: 'created_at' },
-                { data: 'updated_at' },
                {
                     mRender: function (data, type, row) {
                         return '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 

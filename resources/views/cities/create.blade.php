@@ -1,18 +1,7 @@
 @extends('layouts.admin')
 
-    @section('content')
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif 
-
-    <br>
-    <br>
+@section('content')
+    
 
     <div class="container con">
         <h2>Add City</h2>
@@ -26,7 +15,7 @@
 
         <div class="form-group">
             <label>City Manager</label>
-            <select class="form-control" name="gym_id">
+            <select class="form-control" name="city_manager_id">
                 @foreach($users as $user)
                 <option value="{{$user->id}}">{{$user->name}}</option>
                 @endforeach
@@ -37,4 +26,14 @@
         <a href="{{route('cities.index')}}" class="btn btn-danger">Back</a>
     </form>
  </div>
+ <br> <br>
+ @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif 
 @endsection

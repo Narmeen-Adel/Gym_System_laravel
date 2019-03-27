@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/cities', 'Cities\CitiesController@store')->name('cities.store');
         Route::delete('/cities/{city}', 'Cities\CitiesController@destroy')->name('cities.destroy');
         Route::get('/cities/{city}', 'Cities\CitiesController@show')->name('cities.show');
-        Route::get('/data_cities', 'Cities\CitiesController@get_table');
+        Route::get('/data_cities', 'Cities\CitiesController@get_table')->name('cities.get_table');
 
         Route::get('/citymanagers', 'CityManagersController@index')
             ->name('citymanagers.index');
