@@ -59,6 +59,5 @@ class AttendancesController extends Controller
     {
         //
     }
-
-   
+  
 }

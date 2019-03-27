@@ -9,8 +9,8 @@
         <tr>
           <th>Id</th>
           <th>Name</th>
-          <th>Cover Image</th>
           <th>City Manager</th>
+          <th>Cover Image</th>
           <th>Actions</th>
         </tr>
       </thead>
