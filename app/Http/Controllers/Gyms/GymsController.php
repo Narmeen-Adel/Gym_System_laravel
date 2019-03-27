@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Gyms;
 use App\Gym;
 use App\User;
 use App\City;
+use App\Http\Requests\Gym\StoreGymRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +27,7 @@ class GymsController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreGymRequest $request)
     {
         Gym::create(request()->all());
         return redirect()->route('gyms.index');

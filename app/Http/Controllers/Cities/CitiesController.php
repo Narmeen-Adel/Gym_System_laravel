@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cities;
 
 use App\User;
 use App\City;
+use App\Http\Requests\City\StoreCityRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +25,7 @@ class CitiesController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreCityRequest $request)
     {
         City::create(request()->all());
         return redirect()->route('cities.index');
@@ -45,6 +46,7 @@ class CitiesController extends Controller
     } 
     
     public function get_table(){
-        return datatables()->of(City::query())->toJson();
+       // return datatables()->of(City::with('User'))->toJson();
+        return datatables(City::with('User'))->toJson();
     }
 }

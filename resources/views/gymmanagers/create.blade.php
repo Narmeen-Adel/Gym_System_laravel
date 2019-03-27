@@ -4,9 +4,9 @@
     <br>
     <br>
     <div class="container con">
-        <h2>City Managers</h2>
+        <h2>Gym Managers</h2>
 
-        <form action="{{route('citymanagers.store')}}" method="POST">
+        <form action="{{route('gymmanagers.store')}}" method="POST">
         @csrf
         <div class="form-group">
             <label>Name</label>
@@ -29,7 +29,7 @@
             <input name="national_id" class="form-control" />
         </div>
         <div class="form-group">
-            <input name="position" type="hidden" value=2 class="form-control" />
+            <input name="position" type="hidden" value=3 class="form-control" />
         </div>
         <div class="form-group">
             <input name="image" type="file" class="form-control" />
@@ -37,7 +37,7 @@
 
 
         <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="{{route('citymanagers.index')}}" class="btn btn-danger">Back</a>
+        <a href="{{route('gymmanagers.index')}}" class="btn btn-danger">Back</a>
     </form>
  </div>
 

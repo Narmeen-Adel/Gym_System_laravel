@@ -1,18 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-@if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
-<br>
-<br>
+
 
 <div class="container con">
     <h2>Add Gym</h2>
@@ -31,10 +21,21 @@
                    <option value="{{$city->id}}">{{$city->name}}</option>
                @endforeach
            </select>
+           
        </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
     <a href="{{route('gyms.index')}}" class="btn btn-danger">Back</a>
 </form>
 </div>
+<br><br>
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection
