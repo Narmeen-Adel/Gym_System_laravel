@@ -9,10 +9,16 @@ class City extends Model
     protected $fillable = [
         'name',
         'city_manager_id',
+        'country_id',
     ];
 
     public function user()
     {
         return $this->belongsTo('App\User','city_manager_id');
+    }
+
+    public function Country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }
