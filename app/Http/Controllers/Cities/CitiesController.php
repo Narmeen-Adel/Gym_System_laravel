@@ -30,19 +30,7 @@ class CitiesController extends Controller
         return redirect()->route('cities.index');
     }
 
-    public function edit(City $city)
-    {
-        return view('cities.edit', [
-            'city' => $city,
-        ]);
-    } 
-
-    public function update(Request $request, City $city)
-    {
-        $city->update(request()->all());
-        return redirect()->route('cities.index');
-    }
-
+    
     public function destroy(City $city)
     {
         $city->delete();
