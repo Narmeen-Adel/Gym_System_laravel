@@ -60,6 +60,6 @@ class GymsController extends Controller
     }  
     
     public function get_table(){
-        return datatables()->of(Gym::query())->toJson();
+        return datatables()->of(Gym::with('City'))->toJson();
     }
 }

@@ -11,8 +11,8 @@ class City extends Model
         'city_manager_id',
     ];
 
-    public function User()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User','city_manager_id');
     }
 }

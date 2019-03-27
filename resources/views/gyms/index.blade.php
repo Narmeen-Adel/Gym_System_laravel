@@ -31,7 +31,7 @@
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'city_id' },
+                { data: 'city.name' },
                 { data: 'created_at' },
                {
                     mRender: function (data, type, row) {

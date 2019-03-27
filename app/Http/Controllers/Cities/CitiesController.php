@@ -46,7 +46,6 @@ class CitiesController extends Controller
     } 
     
     public function get_table(){
-       // return datatables()->of(City::with('User'))->toJson();
-        return datatables(City::with('User'))->toJson();
+        return datatables()->of(City::with('User'))->toJson();
     }
 }

@@ -71,6 +71,6 @@ class CityManagersController extends Controller
     }
 
     public function get_table(){
-        return datatables()->of(User::query())->toJson();
+        return datatables()->of(User::where('position',2)->get())->toJson();
     }
 }
