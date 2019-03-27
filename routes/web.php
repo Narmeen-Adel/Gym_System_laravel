@@ -64,8 +64,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/cities', 'Cities\CitiesController@index')->name('cities.index');
         Route::get('/cities/create', 'Cities\CitiesController@create')->name('cities.create');
         Route::post('/cities', 'Cities\CitiesController@store')->name('cities.store');
-        Route::get('/cities/{city}/edit', 'Cities\CitiesController@edit')->name('cities.edit');
-        Route::put('/cities/{city}', 'Cities\CitiesController@update')->name('cities.update');
         Route::delete('/cities/{city}', 'Cities\CitiesController@destroy')->name('cities.destroy');
         Route::get('/cities/{city}', 'Cities\CitiesController@show')->name('cities.show');
         Route::get('/data_cities', 'Cities\CitiesController@get_table');
