@@ -32,7 +32,7 @@ class GymsController extends Controller
                 ->get();
             // dd($gyms);
             return view('gyms.index', [
-                'gyms' => Gym::all()
+                'gyms' => $gyms
             ]);
         } elseif ($role === 'city_manager') {
             $id = Auth::user()->id;
