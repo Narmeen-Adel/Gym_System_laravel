@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('sessions.show');
     Route::delete('/sessions/{session}', 'SessionsController@destroy')
         ->name('sessions.destroy');
+
     Route::group(['middleware' => ['role:admin|city_manager']], function () {
         Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');
         Route::get('/gyms/create', 'Gyms\GymsController@create')->name('gyms.create');
