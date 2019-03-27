@@ -18,4 +18,10 @@ class Package extends Model
 
         return $this->belongsTo('App\Gym');
     }
+
+
+    public function customers()
+    {
+        return $this->belongsToMany('App\Customer')->using(Sales::class)->withPivot('paid_price ,available_sessions');
+    }
 }

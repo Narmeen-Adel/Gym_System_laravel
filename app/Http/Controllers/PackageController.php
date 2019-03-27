@@ -43,18 +43,12 @@ class PackageController extends Controller
     }
 
     public function update(Package $package,Request $request){
-        // $newPost = Post::find($post);
-
-        // $newPost= request()->all();
-
-        // $newPost->save();
-
         $package->update($request->all());
         return redirect()->route('packages.index');
     }
 
     public function delete(Package $package){
-        // $post = Post::find($post->id);
+
         $package->delete();
         return redirect()->route('packages.index');
     }

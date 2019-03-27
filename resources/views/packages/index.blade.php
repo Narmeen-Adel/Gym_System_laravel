@@ -37,12 +37,12 @@
                 { data: 'created_at' },
                {
                     mRender: function (data, type, row) {
-                        return '<a href="/packages/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
+                        return '<a href="/packages/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>'
                         + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
 
                     }
                 },
-              
+
             ],
             'paging'      : true,
             'lengthChange': true,
@@ -55,7 +55,7 @@
     </script>
 
     <a class="btn btn-info" href="{{route('packages.create')}}"><i class="fa fa-plus"></i><span>Add New Package</span></a>
-    
+
 </div>
 
 @endsection
