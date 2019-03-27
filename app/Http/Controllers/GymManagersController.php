@@ -74,4 +74,9 @@ class GymManagersController extends Controller
        return redirect()->route('gymmanagers.index');
     }
 
+
+    public function get_table(){
+        return datatables()->of(User::query())->toJson();
+    }
+
 }

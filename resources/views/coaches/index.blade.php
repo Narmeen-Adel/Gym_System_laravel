@@ -3,38 +3,50 @@
 <div class="container">
     <h2>Coaches</h2>
     <br>
-    <table class="table table-hover">
+    <table id="example" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">name</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($coaches as $coach)
-            <tr>
-                <td>{{$coach->id}}</td>
-                <td>{{$coach->name}}</td>
-
-                <td>
-                    <a href="{{route('coaches.edit',[$coach->id])}}" class="btn btn-success"><i class="fa fa-edit"></i><span>Edit</span></a>
-
-                    <form action="{{route('coaches.destroy',[$coach->id])}}" method="Post" style="display:inline; float:left; margin-right:10px;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="return confirm('Are you Sure !')" class="btn btn-danger"><i class="fa fa-times"></i><span>Delete</span></button>
-                    </form>
-
-                </td>
-                </tr>
-            @endforeach
-        </tbody>
     </table>
-    <br>
-    <br>
+
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#example').DataTable( {
+            serverSide: true,
+            ajax: {
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/data_coaches',
+                dataType : 'json',
+                type: 'get',
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'name' },
+                {
+                    mRender: function (data, type, row) {
+                        return '<a href="/coaches/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
+                        + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
+                    }
+                },
+              
+            ],
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : true,
+        } );
+        /*------------------------------------------------------*/
+    </script>
+  
     <a class="btn btn-info" href="{{route('coaches.create')}}"><i class="fa fa-plus"></i><span>Add New Coach</span></a>
-    <br>
-    <br>
 
 </div>
 
