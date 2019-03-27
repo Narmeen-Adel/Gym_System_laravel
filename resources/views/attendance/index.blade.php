@@ -11,10 +11,14 @@
                 <th>User Name</th>
                 <th>Email</th>
                 <th>Training Session</th>
-                <th>Attendance Time</th>
                 <th>Attendance Date</th>
+                <th>Attendance Time</th>
+                @role('admin|city_manager')
                 <th>Gym</th>
+                @endrole
+                @role('admin')
                 <th>City</th>
+                @endrole
 
             </tr>
         </thead>
@@ -26,9 +30,12 @@
                 <td>{{$history->session_name}}</td>
                 <td>{{ Carbon\Carbon::parse($history->attendanceDate)->format('Y-m-d') }}</td>
                 <td>{{ Carbon\Carbon::parse($history->attendanceDate)->format('H:i:s') }}</td>
+                @role('admin|city_manager')
                 <td>{{$history->gym}}</td>
+                @endrole
+                @role('admin')
                 <td>{{$history->city}}</td>
-
+                @endrole
             </tr>
             @endforeach
         </tbody>
