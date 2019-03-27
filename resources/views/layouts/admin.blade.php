@@ -142,7 +142,7 @@
                     <li><a href="{{route('coaches.index')}}"><i class="fa fa-user"></i> <span>Coaches</span></a></li>
                     @endrole
                     @role('admin|city_manager')
-                    <li><a href="#"><i class="fa fa-users"></i> <span>Gym Managers</span></a></li>
+                    <li><a href="{{route('gymmanagers.index')}}"><i class="fa fa-users"></i> <span>Gym Managers</span></a></li>
                     <li><a href="{{route('gyms.index')}}"><i class="fa fa-building-o"></i> <span>Gyms</span></a></li>
                     @endrole
 

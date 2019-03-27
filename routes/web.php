@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('gymmanagers.update');
         Route::delete('/gymmanagers/{gymmanager}', 'GymManagersController@destroy')
             ->name('gymmanagers.destroy');
+        Route::get('/data_gymmanagers', 'GymManagersController@get_table');
             
     });
 
@@ -74,7 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/cities', 'Cities\CitiesController@store')->name('cities.store');
         Route::get('/cities/{city}/edit', 'Cities\CitiesController@edit')->name('cities.edit');
         Route::put('/cities/{city}', 'Cities\CitiesController@update')->name('cities.update');
-        Route::delete('/gyms/{city}', 'Cities\CitiesController@destroy')->name('cities.destroy');
+        Route::delete('/cities/{city}', 'Cities\CitiesController@destroy')->name('cities.destroy');
         Route::get('/cities/{city}', 'Cities\CitiesController@show')->name('cities.show');
         Route::get('/data_cities', 'Cities\CitiesController@get_table');
         
