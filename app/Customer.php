@@ -45,4 +45,9 @@ class Customer extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function sessions()
+    {
+        return $this->belongsToMany(Session::class)->using(CustomerSession::class)->withPivot('attendance_date');
+    }
 }

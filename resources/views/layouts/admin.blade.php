@@ -139,6 +139,7 @@
                     <li><a href="{{route('customers.index')}}"><i class="fa fa-users"></i> <span>Users</span></a></li>
                     <li><a href="{{route('cities.index')}}"><i class="fa fa-globe "></i> <span>Cities</span></a></li>
                     <li><a href="{{route('packages.index')}}"><i class="fa fa-th "></i> <span>Training Packages</span></a></li>
+                    <li><a href="{{route('sessions.index')}}"><i class="fa fa-user"></i> <span>Training Sessions</span></a></li>
                     <li><a href="{{route('coaches.index')}}"><i class="fa fa-user"></i> <span>Coaches</span></a></li>
                     @endrole
                     @role('admin|city_manager')
@@ -147,9 +148,9 @@
                     @endrole
 
                     @role('admin|city_manager|gym_manager')
-                    <li><a href="#"><i class="fa fa-list-alt"></i> <span>Attendace</span></a></li>
-                    <li><a href="{{route('sales.index')}}"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
-                    <li><a href="#"><i class="fa  fa-line-chart "></i> <span>Revenues</span></a></li>
+                    <li><a href="{{route('attendance.index')}}"><i class="fa fa-list-alt"></i> <span>Attendace</span></a></li>
+                    <li><a href="#"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
+                    <li><a href="{{route('sales.index')}}"><i class="fa  fa-line-chart "></i> <span>Revenues</span></a></li>
                     @endrole
 
                     <!-- <li class="treeview">

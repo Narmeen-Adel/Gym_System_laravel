@@ -3,13 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Attendance extends Model
+class CustomerSession extends Pivot
 {
     protected $fillable = [
         'session_id ',
         'customer_id',
-    
+        // 'created_at',
+
     ];
+
 
 }
