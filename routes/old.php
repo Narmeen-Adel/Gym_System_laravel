@@ -95,5 +95,4 @@ Route::post('/sales', 'SalesController@store')->name('sales.store');
 
 Route::get('/customers', 'CustomerController@index')->name('customers.index');
 Route::get('/data_customers', 'CustomerController@get_table');
-
-
+}

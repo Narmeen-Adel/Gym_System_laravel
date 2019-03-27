@@ -2,28 +2,33 @@
 
 @section('content')
 <div class="container">
-    <h2>Attendance</h2>
+    <h2>Attendance History</h2>
     <br>
-    {{$attendances}}
     <table id="example" class="table table-bordered table-striped">
         <thead>
             <tr>
 
-                <th>Session Id</th>
-                <th>Customer Id</th>
-                <th>Created At</th>
-                <th>Time</th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Training Session</th>
+                <th>Attendance Time</th>
+                <th>Attendance Date</th>
+                <th>Gym</th>
+                <th>City</th>
 
             </tr>
         </thead>
         <tbody>
-            @foreach($attendances as $attendance)
+            @foreach($histories as $history)
             <tr>
-                <td>{{$attendance->session_id}}</td>
-                <td>{{$attendance->customer_id}}</td>
+                <td>{{$history->custm_name}}</td>
+                <td>{{$history->email}}</td>
+                <td>{{$history->session_name}}</td>
+                <td>{{ Carbon\Carbon::parse($history->attendanceDate)->format('Y-m-d') }}</td>
+                <td>{{ Carbon\Carbon::parse($history->attendanceDate)->format('H:i:s') }}</td>
+                <td>{{$history->gym}}</td>
+                <td>{{$history->city}}</td>
 
-                <td>{{ Carbon\Carbon::parse($attendance->attendance_date)->format('Y-m-d') }}</td>
-                <td>{{ Carbon\Carbon::parse($attendance->attendance_date)->format('H:i:s') }}</td>
             </tr>
             @endforeach
         </tbody>
