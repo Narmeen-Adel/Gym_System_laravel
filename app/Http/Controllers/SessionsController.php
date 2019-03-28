@@ -112,7 +112,6 @@ class SessionsController extends Controller
         else{
         $affectedRows = Session::where('id',$session->id)->delete();
         $sessionsCoaches=DB::table('coaches_sessions')->where('session_id', $session->id)->get();
-        $sessions=CoachesSession::where('session_id',$session->id)->get();
             foreach($sessionsCoaches as $session){
                 $session->delete();
             }
