@@ -49,7 +49,6 @@ class SessionsController extends Controller
                 'gym_id'=>$request->gym_id,
                 'package_id'=>$request->package_id,
                 'day'=>$request->day]);
-                dd($request);
             foreach($coaches as $coach){
                 DB::table('coaches_sessions')->insert(['session_id'=>Session::latest()->first()->id,'coach_id'=>$coach]);
                 }
