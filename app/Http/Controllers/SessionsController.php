@@ -13,6 +13,9 @@ use App\Rules\OverlapValidateRule;
 use App\Http\Requests\Session\StoreSessionRequest;
 use App\Http\Requests\Session\UpdateSessionRequest;
 use App\CoachSession;
+use DB;
+use App\CustomerSession;
+use Illuminate\Support\MessageBag;
 
 class SessionsController extends Controller
 {
@@ -38,19 +41,30 @@ class SessionsController extends Controller
     public function store(StoreSessionRequest $request)
     {
         $this->validate($request, ['starts_at' => new OverlapValidateRule($request->finishes_at)]);
-        Session::create($request->all());
-        //CoachSession::create('insert into coaches_sessions session_id,coach_id values',[$request->id,$request->coache_id]);
-        return redirect()->route('sessions.index');
+        $coaches=$request->get('coaches');
+            Session::create([
+                'name' => $request->name,
+                'starts_at' =>$request->starts_at,
+                'finishes_at'=>$request->finishes_at,
+                'gym_id'=>$request->gym_id,
+                'package_id'=>$request->package_id,
+                'day'=>$request->day]);
+                dd($request);
+            foreach($coaches as $coach){
+                DB::table('coaches_sessions')->insert(['session_id'=>Session::latest()->first()->id,'coach_id'=>$coach]);
+                }
+           return redirect()->route('sessions.index');
     }
 
     public function edit(Session $session)
-    {
-        //$hasUsers=Attendance::select('select * from attendance where session_id=:id',['id'=>$session->id]);
-        //$arr=$hasUsers->pluck('id')->toArray();
-        //if($arr!=[]){
-          // return redirect()->route('sessions.index');
-        //}
-        //else{ 
+    {       
+        $hasUsers=DB::table('customer_session')->where('session_id', $session->id)->get();
+        if(count($hasUsers)>0){
+            $message_bag=new MessageBag();
+            $message_bag->add('Attendence_Check','Can not Update this session');
+            return redirect()->route('sessions.index')->withErrors($message_bag);
+        }
+        else{
                 $coaches = Coach::all();
                 $gyms=Gym::all();
                 $packages=Package::all();
@@ -60,7 +74,7 @@ class SessionsController extends Controller
                     'gyms' => $gyms,
                     'packages' =>$packages
                     ]);}
-    //}
+                }
 
     public function update(UpdateSessionRequest $request,Session $session)
         {
@@ -89,22 +103,23 @@ class SessionsController extends Controller
 
     public function destroy(Request $request, Session $session)
     {
-        $hasUsers=Attendance::select('select * from attendance where session_id=:id',['id'=>$session->id]);
-        // dd($hasUsers);
-        //$this->validate($request,
-          //     [$session->id => new HasUsersSessionRule
-           // ]);
-    
-           if(isEmpty($hasUsers))
-           {
-               $h=true;
-           }
-           dd("hhhhhhhhhhhhhhhhh",$h);
-        // if($hasUsers->count())
-        // $affectedRows = Session::where('id',$session->id)->delete();
+        $hasUsers=DB::table('customer_session')->where('session_id', $session->id)->get();
+        if(count($hasUsers)>0){
+            $message_bag=new MessageBag();
+            $message_bag->add('Delete_session','Can not Delete this session');
+            return redirect()->route('sessions.index')->withErrors($message_bag);
+        }
+        else{
+        $affectedRows = Session::where('id',$session->id)->delete();
+        $sessionsCoaches=DB::table('coaches_sessions')->where('session_id', $session->id)->get();
+        $sessions=CoachesSession::where('session_id',$session->id)->get();
+            foreach($sessionsCoaches as $session){
+                $session->delete();
+            }
         return redirect()->route('sessions.index');
        
         }
+    }
 
         public function get_table(){
             return datatables()->of(Session::query())->toJson();
