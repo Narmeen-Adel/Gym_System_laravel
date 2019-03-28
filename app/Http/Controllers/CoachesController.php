@@ -44,4 +44,8 @@ class CoachesController extends Controller
        return redirect()->route('coaches.index');
     }
 
+    public function get_table(){
+        return datatables()->of(Coach::query())->toJson();
+    }
+
 }

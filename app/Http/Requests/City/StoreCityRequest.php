@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Attendance;
+namespace App\Http\Requests\City;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAttendanceRequest extends FormRequest
+class StoreCityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class StoreAttendanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'session_id'=>"required|exists:sessions,id",
-            //'customer_id'=>"required|exists:customers,id"
-            // 'session_id'*'customer_id' =>"unique"
+            'name' => 'required|unique:cities,name',
         ];
     }
 }

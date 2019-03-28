@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Customer\StoreCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
 use App\Http\Requests\Attendance\StoreAttendanceRequest;
-use App\Attendance;
+use App\CustomerSession;
 //////////////////
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Customer;
+use App\Session;
+use App\Sale;
 
 class AuthController extends Controller
 {
@@ -109,13 +113,72 @@ class AuthController extends Controller
 
     public function store(StoreAttendanceRequest $request)
     {
-       //dd($request->session_id);
-       Attendance::create(["session_id" => $request->session_id,"customer_id" =>auth('api')->user()->id]);
-       return response()->json([
-        'message' => 'you are register to that  session '
-    ],201);
+      $available_session=DB::table('sales')->where('customer_id', auth('api')->user()->id)->orderBy('created_at', 'desc')->first();
+      ////////////////////////to validate available session
+      if($available_session!=[]){
+        $available_session=$available_session->available_sessions;
+            if($available_session > 0)
+            {
+                $result= true;
+            }
+            else
+            {
+                
+              return response()->json(['message' => 'you dont have sessions']);
+            }
+       }
+       else
+       {
+        return response()->json(['message' => 'you dont have sessions']);
+       }
+
+       //////////////////////////////// to validate dateof session
+       $session_date=Session::find($request->session_id)->day;
+       if( $session_date != (Carbon::now())->format('Y-m-d'))
+       {
+        return response()->json(['message' => ' not available  to attend that session today ..']);
+       }
+       $query=CustomerSession::where([
+                'customer_id'  =>   auth('api')->user()->id, 
+                'session_id'   =>   $request->session_id,])->get();
+                if($query->toArray()!= []){
+                  return response()->json(['message' => ' you have already registered toattend this session ..']);
+                }
+/////////////////// insert data 
+       DB::table('customer_session')->insert(
+        [
+            'customer_id'     =>   auth('api')->user()->id, 
+           'session_id'   =>    $request->session_id,
+          'attendance_date' =>  Carbon::now()
+        ]
+           ); 
+           //////////
+        Sale::where('customer_id',auth('api')->user()->id)
+              ->orderBy('created_at', 'desc')->first()
+              ->decrement('available_sessions',1);
+            
+        return response()->json([
+        'message' => 'you are register to that  session ', ],201);
 
     }
+
+    public function getSession(Request $request){
+      
+        $available_session=DB::table('sales')->where('customer_id', auth('api')->user()->id)
+                                             ->orderBy('created_at', 'desc')->first()
+                                             ->available_sessions;
+       
+        $total_session =DB::table('packages')
+                        ->select('packages.sessionsNumber')   
+                        ->join('sales as sal', 'packages.id', '=', 'sal.package_id')
+                        ->where('customer_id',auth('api')->user()->id)
+                        ->orderBy('sal.id', 'desc')->first()->sessionsNumber;
+        return response()->json([
+            'total_session'     => $total_session , 
+            'available_session' =>$available_session,],201);             
+
+    }
+
 
 }
 

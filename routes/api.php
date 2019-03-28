@@ -37,7 +37,9 @@ Route::group([
     Route::post('me', 'Api\AuthController@me');
     Route::post('update', 'Api\AuthController@update');
     Route::post('session/{id}/attend','Api\AuthController@store');
+    Route::get('session/total','Api\AuthController@getSession');
+                                                   
    
-
+    
 });
 //Auth::routes(['verify' => true]);

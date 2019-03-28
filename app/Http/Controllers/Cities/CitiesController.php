@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cities;
 
 use App\User;
 use App\City;
+use App\Http\Requests\City\StoreCityRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,25 +25,13 @@ class CitiesController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreCityRequest $request)
     {
         City::create(request()->all());
         return redirect()->route('cities.index');
     }
 
-    public function edit(City $city)
-    {
-        return view('cities.edit', [
-            'city' => $city,
-        ]);
-    } 
-
-    public function update(Request $request, City $city)
-    {
-        $city->update(request()->all());
-        return redirect()->route('cities.index');
-    }
-
+    
     public function destroy(City $city)
     {
         $city->delete();
@@ -57,6 +46,7 @@ class CitiesController extends Controller
     } 
     
     public function get_table(){
-        return datatables()->of(City::query())->toJson();
+       // return datatables()->of(City::with('User'))->toJson();
+        return datatables(City::with('User'))->toJson();
     }
 }

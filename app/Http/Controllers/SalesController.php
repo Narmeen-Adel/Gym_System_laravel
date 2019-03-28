@@ -18,7 +18,10 @@ class SalesController extends Controller
      */
     public function index()
     {
-      return view('sales.index',['sales' => Sale::all()]);   
+      return view('sales.index',[
+          'sales' => Sale::all(),
+          'sum' => Sale::all()->sum('paid_price'),
+        ]);
     }
 
     /**
@@ -38,15 +41,15 @@ class SalesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreSaleRequest $request)
-    { 
-      
+    {
+
       $pack=Package::find($request->package_id);
       Sale::create([
       'available_sessions'=>$pack->sessionsNumber,
       'paid_price'=>$pack->price,
       'package_id'=>$pack->id,
       'user_id'=>$request->customer_id]);
-      return redirect()->route('sales.index');   
+      return redirect()->route('sales.index');
     }
 
 
@@ -61,5 +64,5 @@ class SalesController extends Controller
         //
     }
 
-    
+
 }

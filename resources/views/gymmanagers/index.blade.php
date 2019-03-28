@@ -1,18 +1,15 @@
 @extends('layouts.admin')
-
 @section('content')
 <div class="container">
-    <h2>Training Packages</h2>
-    <br>
+    <h2>Gym Managers</h2>
     <table id="example" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>name</th>
-                <th># Sessions</th>
-                <th>Price</th>
-                <th>Created At</th>
-                <th>Actions</th>
+                <th>Email</th>
+                <th>National_Id</th>
+                <th>Options</th >
             </tr>
         </thead>
     </table>
@@ -25,24 +22,23 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/data_packages',
+                url: '/data_gymmanagers',
                 dataType : 'json',
                 type: 'get',
             },
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'sessionsNumber' },
-                { data: 'price' },
-                { data: 'created_at' },
+                { data: 'email' },
+                { data: 'national_id' },
                {
                     mRender: function (data, type, row) {
-                        return '<a href="/packages/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>'
+                        return '<a href="/gymmanagers/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
                         + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
 
                     }
                 },
-
+              
             ],
             'paging'      : true,
             'lengthChange': true,
@@ -54,7 +50,7 @@
         /*------------------------------------------------------*/
     </script>
 
-    <a class="btn btn-info" href="{{route('packages.create')}}"><i class="fa fa-plus"></i><span>Add New Package</span></a>
+    <a class="btn btn-info" href="{{route('gymmanagers.create')}}"><i class="fa fa-plus"></i><span>Add New Gym Manager</span></a>
 
 </div>
 

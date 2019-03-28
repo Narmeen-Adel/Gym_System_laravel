@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateSalesTable extends Migration
 {
     /**
@@ -11,7 +9,6 @@ class CreateSalesTable extends Migration
      *
      * @return void
      */
-
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
@@ -23,7 +20,6 @@ class CreateSalesTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -31,6 +27,6 @@ class CreateSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('sale');
     }
 }

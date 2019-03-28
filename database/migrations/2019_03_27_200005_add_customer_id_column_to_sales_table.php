@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCustomerIdColumnToAttendanceTable extends Migration
+class AddCustomerIdColumnToSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddCustomerIdColumnToAttendanceTable extends Migration
      */
     public function up()
     {
-        Schema::table('attendance', function (Blueprint $table) {
-            $table->unsignedbigInteger('customer_id')->nullable();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+        Schema::table('sales', function (Blueprint $table) {
+            //
         });
     }
 
@@ -26,7 +25,7 @@ class AddCustomerIdColumnToAttendanceTable extends Migration
      */
     public function down()
     {
-        Schema::table('attendance', function (Blueprint $table) {
+        Schema::table('sales', function (Blueprint $table) {
             //
         });
     }

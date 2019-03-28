@@ -11,7 +11,6 @@
           <th>Name</th>
           <th>City</th>
           <th>Created At</th>
-          <th>Updated At</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -32,13 +31,11 @@
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'city_manager_id' },
+                { data: 'city_id' },
                 { data: 'created_at' },
-                { data: 'updated_at' },
                {
                     mRender: function (data, type, row) {
-                        return '<a href="/cities/'+row.id+'" class=" btn btn-info" data-id="' + row.id + '" style="margin-left:10px;">Show</a>' 
-                        + '<a href="/cities/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
+                        return '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>' 
                         + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
                     }
                 },

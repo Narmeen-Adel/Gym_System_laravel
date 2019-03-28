@@ -34,4 +34,9 @@ class Session extends Model
         return $this->belongsTo(Package::class);
     }
 
+    public function customers()
+    {
+        return $this->hasMany(Customer::class)->using(CustomerSession::class)->withPivot('attendance_date');
+    }
+
 }

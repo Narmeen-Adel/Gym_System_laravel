@@ -12,15 +12,19 @@ class Attendance extends Model
     
     
     ];
-    public function customer(){
+
+
+    public function customers(){
         return $this->belongsTo(Customer::class);
 
     }
 
-    public function session(){
-        return $this->belongsTo(Session::class);
+    // public function sessions(){
+    //     return $this->belongsTo(Session::class);
+    //     return $this->hasMany(Session::class)->using(CustomerSession::class)->withPivot('attendance_date');
 
-    }
+
+    // }
    
 
 }
