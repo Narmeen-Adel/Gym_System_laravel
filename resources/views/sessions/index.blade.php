@@ -3,47 +3,43 @@
 <div class="container">
     <h2>Training Sessions</h2>
     <br>
-    <table class="table table-hover">
+    <table id="example" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">name</th>
-                <th scope="col">Day</th>
-                <th scope="col">Starts_at</th>
-                <th scope="col">Finishes_at</th>
+                <th>Id</th>
+                <th>name</th>
+                <th>Day</th>
+                <th>Starts_at</th>
+                <th>Finishes_at</th>
+                <th>Actios</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($sessions as $session)
-            <tr>
-                <td>{{$session->id}}</td>
-                <td>{{$session->name}}</td>
-                <td>{{$session->day}}</td>
-                <td>{{$session->starts_at}}</td>
-                <td>{{$session->finishes_at}}</td>
-
-                <td>
-                    <a href="{{route('sessions.edit',[$session->id])}}" class="btn btn-success"><i class="fa fa-edit"></i><span>Edit</span></a>
-
-                    <form action="{{route('sessions.destroy',[$session->id])}}" method="Post" style="display:inline; float:left; margin-right:10px;">
-                        @csrf
-                        @method('DELETE')
-
-
-                        <button type="submit" onclick="return confirm('Are you Sure !')" class="btn btn-danger"><i class="fa fa-times"></i><span>Delete</span></button>
-                    </form>
-
-                </td>
-                </tr>
-            @endforeach
-        </tbody>
     </table>
-    <br>
-    <br>
-    <a class="btn btn-info" href="{{route('sessions.create')}}"><i class="fa fa-plus"></i><span>Add New Session</span></a>
-    <br>
-    <br>
 
-</div>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#example').DataTable( {
+            processing: true,
+            serverSide: true, 
+            ajax: '{!! route('sessions.get_table') !!}',
+            columns: [
+                { data: 'id' },
+                { data: 'name' },
+                { data: 'day' },
+                { data: 'starts_at' },
+                { data: 'finishes_at' },
+                {
+                  mRender: function (data, type, row) {
+                    return '<a href="/sessions/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>'
+                    + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
+
+                  }
+                },              
+            ],    
+        });
+        /*------------------------------------------------------*/
+    </script>
+    <a href='/sessions/create' style="margin-top: 10px;" class="btn btn-info"><i class="fa fa-plus"></i><span>Add New Seesion</span></a>                   
+</div>  
 
 @endsection

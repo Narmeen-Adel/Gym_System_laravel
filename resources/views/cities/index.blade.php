@@ -11,6 +11,7 @@
           <th>Name</th>
           <th>City Manager</th>
           <th>Created At</th>
+          <th>Country</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -25,8 +26,9 @@
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'city_manager_id' },
+                { data: 'user.name' },
                 { data: 'created_at' },
+                { data: 'country.name' },
                 {
                   mRender: function (data, type, row) {
                     return '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'

@@ -8,22 +8,60 @@ use App\City;
 use App\Http\Requests\Gym\StoreGymRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Auth;
+use DB;
 
 class GymsController extends Controller
 {
     public function index()
     {
-        return view('gyms.index',[
-            'gyms' => Gym::all()
-        ]);
+        $user = \Auth::user();
+        $role = $user->roles->first()->name;
+
+        if ($role === 'admin') {
+
+            $gyms = DB::table('gyms')
+                ->join('cities', 'cities.id', '=', 'gyms.city_id')
+                ->join('users', 'users.id', '=', 'cities.city_manager_id')
+                ->select(
+                    'gyms.name as name',
+                    'gyms.created_at as created_at  ',
+                    'gyms.cover_image as cover_image',
+                    'users.name as city_manager'
+                )
+                ->get();
+            // dd($gyms);
+            return view('gyms.index', [
+                'gyms' => $gyms
+            ]);
+        } elseif ($role === 'city_manager') {
+            $id = Auth::user()->id;
+            $city_id = DB::table('cities')
+                ->select('cities.id')
+                ->where('cities.city_manager_id', '=', $id)
+                ->value('id');
+            $gyms = DB::table('gyms')
+                ->select(
+                    'gyms.name as name',
+                    'gyms.created_at as created_at',
+                    'gyms.cover_image as cover_image'
+                )->where('gyms.city_id', '=', $city_id)
+                ->get();
+            dd($gyms);
+            return view('gyms.index', [
+                'gyms' => $gyms
+            ]);
+        }
     }
-   
+
     public function create()
     {
         $cities = City::all();
-        return view('gyms.create',[
-            'cities' => $cities
+        //to get current user
+        $user = auth()->user();
+        return view('gyms.create', [
+            'cities' => $cities,
+            'user' => $user
         ]);
     }
 
@@ -38,7 +76,7 @@ class GymsController extends Controller
         return view('gyms.edit', [
             'gym' => $gym,
         ]);
-    } 
+    }
 
     public function update(Request $request, Gym $gym)
     {
@@ -57,9 +95,10 @@ class GymsController extends Controller
         return view('gyms.show', [
             'gym' => $gym,
         ]);
-    }  
-    
-    public function get_table(){
-        return datatables()->of(Gym::query())->toJson();
+    }
+
+    public function get_table()
+    {
+        return datatables()->of(Gym::with('City', 'User'))->toJson();
     }
 }

@@ -105,4 +105,8 @@ class SessionsController extends Controller
         return redirect()->route('sessions.index');
        
         }
+
+        public function get_table(){
+            return datatables()->of(Session::query())->toJson();
+        }
     }

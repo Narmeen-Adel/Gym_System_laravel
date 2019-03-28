@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGymIdColumnToSessions extends Migration
+class AddCoverImageColumnToGyms extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class AddGymIdColumnToSessions extends Migration
      */
     public function up()
     {
-        Schema::table('sessions', function (Blueprint $table) {
-            $table->unsignedBigInteger('gym_id')->nullable();
-            $table->foreign('gym_id')
-            ->references('id')->on('gyms');
+        Schema::table('gyms', function (Blueprint $table) {
+            $table->string('cover_image')->nullable()->default('myimage.jpg');
         });
     }
 
-
+    
 }

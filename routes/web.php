@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('sessions.show');
     Route::delete('/sessions/{session}', 'SessionsController@destroy')
         ->name('sessions.destroy');
+    Route::get('/data_sessions', 'SessionsController@get_table')->name('sessions.get_table');
+
 
     Route::group(['middleware' => ['role:admin|city_manager']], function () {
         Route::get('/gyms', 'Gyms\GymsController@index')->name('gyms.index');

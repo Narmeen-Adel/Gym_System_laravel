@@ -28,7 +28,6 @@ i {
     background-color: #fff;
     margin: auto;
     margin-bottom: 50px;
-    /* border: 1px solid #3c8dbc; */
 }
 .card-header {
     height: 50px;
@@ -41,6 +40,5 @@ i {
 
 .card-title {
     font-size: 30px;
-
     padding: 20px;
 }
