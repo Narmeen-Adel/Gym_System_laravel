@@ -34,7 +34,7 @@ class UpdateSessionRequest extends FormRequest
             'day' => 'required',
             'starts_at'=>'required',
             'finishes_at'=>'required',
-            'name'=>'required'
+            //'name'=>'required'
         ];
     }
     public function messages()

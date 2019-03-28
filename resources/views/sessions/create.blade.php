@@ -14,17 +14,20 @@
 
         <div class="form-group">
             <label>Session Day</label>
+            <label>in Format: Y-m-d</label>
             <input name="day" class="form-control"/>
         </div>
 
 
         <div class="form-group">
             <label>Start Time</label>
+            <label>in Format: Y-m-d H:m:s</label>
             <input name="starts_at" class="form-control" />
         </div>
 
         <div class="form-group">
             <label>End Time</label>
+            <label>in Format: Y-m-d H:m:s</label>
             <input name="finishes_at" class="form-control" />
         </div>
 
@@ -49,6 +52,7 @@
 
               <div class="form-group">
                 <label>Select Coaches</label>
+                <label>Must Select at least One</label>
                 <select class="form-control select2 select2-hidden-accessible" multiple="" name="coaches[]" data-placeholder="Select coaches" style="width: 100%;" tabindex="-1" aria-hidden="true">
                     @foreach($coaches as $coach)
                     <option value="{{$coach->id}}">{{$coach->name}}</option>
