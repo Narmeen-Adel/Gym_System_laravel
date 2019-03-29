@@ -6,6 +6,7 @@ use App\Gym;
 use App\User;
 use App\City;
 use App\Http\Requests\Gym\StoreGymRequest;
+use App\Http\Requests\Gym\UpdateGymRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -72,13 +73,13 @@ class GymsController extends Controller
     }
 
     public function edit(Gym $gym)
-    {
+    {       
         return view('gyms.edit', [
             'gym' => $gym,
         ]);
     }
 
-    public function update(Request $request, Gym $gym)
+    public function update(UpdateGymRequest $request, Gym $gym)
     {
         $gym->update(request()->all());
         return redirect()->route('gyms.index');
@@ -86,8 +87,16 @@ class GymsController extends Controller
 
     public function destroy(Gym $gym)
     {
-        $gym->delete();
-        return redirect()->route('gyms.index');
+         $gym->delete();
+         return redirect()->route('gyms.index');
+
+        //  if ( $request->ajax() ) {
+        //      $gym->delete( $request->all() );
+    
+        //      return response(['msg' => 'Product deleted', 'status' => 'success']);
+        //  }
+        //  return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
+
     }
 
     public function show(Gym $gym)
