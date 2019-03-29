@@ -28,9 +28,7 @@ class PackageController extends Controller
 
     public function store()
     {
-        //$t=$request->input('title');
         $req=request()->all();
-        // dd($req);
         Package::create($req);
         return redirect()->route('packages.index');
     }
