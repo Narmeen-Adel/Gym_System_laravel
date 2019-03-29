@@ -4,7 +4,7 @@ namespace App\Http\Requests\Gym;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreGymRequest extends FormRequest
+class UpdateGymRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,8 @@ class StoreGymRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:gyms,name',
-            'cover_image' => 'required',
+            'name' => 'required|unique:gyms,name,'.$this->gym['id'],
+          
         ];
     }
-
-    
 }

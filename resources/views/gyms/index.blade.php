@@ -51,8 +51,7 @@ var c_array = [
          c_array.push(
             {
                     mRender: function (data, type, row) {
-                        return '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>'
-                        + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
+                        return '<a href="/gyms/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a> <form style="display:inline" method="POST" action="gyms/'+row.id+'">@csrf   {{ method_field('DELETE')}}<button type="submit" onclick="return myFunction();" class="btn btn-xs btn-danger"><i class="fa fa-times"></i>Delete</button></form>'
                     }
                 },
 
@@ -68,14 +67,7 @@ var c_array = [
                 url: '/data_gyms',
                 dataType : 'json',
                 type: 'get',
-                // success:function(response) {
-
-                //     console.log(response);
-                // },
-                // error: function (response) {
-                //     alert(' Cant Save This Documents !');
-                //     console.log(response);
-                // }
+         
             },
             columns: c_array,
             'paging'      : true,
@@ -86,6 +78,17 @@ var c_array = [
             'autoWidth'   : true,
         } );
         /*------------------------------------------------------*/
+    
+ //confirm deleting 
+  function myFunction(){
+    var agree = confirm("Are you sure you want to delete this City manager?");
+    if(agree == true){
+      return true
+    } else {
+      return false;
+     }
+  }
+
     </script>
 
 

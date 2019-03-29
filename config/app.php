@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         'Webpatser\Countries\CountriesServiceProvider',
+        Cog\Laravel\Ban\Providers\BanServiceProvider::class,
 
     ],
 

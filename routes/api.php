@@ -39,7 +39,7 @@ Route::group([
     Route::post('update', 'Api\AuthController@update');
     Route::post('session/{id}/attend','Api\AuthController@store');
     Route::get('session/total','Api\AuthController@getSession');
-                                                   
+    Route::get('session/history','Api\AuthController@sessionHistory');                                              
    
     
 });

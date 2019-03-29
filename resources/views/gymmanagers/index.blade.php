@@ -61,6 +61,17 @@
             'autoWidth': true,
         });
         /*------------------------------------------------------*/
+
+//confirm deleting 
+function myFunction(){
+    var agree = confirm("Are you sure you want to delete this gym manager?");
+    if(agree == true){
+      return true
+    } else {
+      return false;
+     }
+  }
+
     </script>
 
     <a class="btn btn-info" href="{{route('gymmanagers.create')}}"><i class="fa fa-plus"></i><span>Add New Gym Manager</span></a>

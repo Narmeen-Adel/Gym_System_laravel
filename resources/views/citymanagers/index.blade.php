@@ -33,8 +33,7 @@
                 { data: 'national_id' },
                {
                     mRender: function (data, type, row) {
-                        return '<a href="/citymanagers/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a>'
-                        + '<a href="#" class=" btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle" style="margin-left:10px;"><i class="fa fa-times"></i><span>Delete</span></a>'
+                        return '<a href="/citymanagers/'+row.id+'/edit" class=" btn btn-success" data-id="' + row.id + '" style="margin-left:10px;"><i class="fa fa-edit"></i><span>Edit</span></a> <form style="display:inline" method="POST" action="citymanagers/'+row.id+'">@csrf   {{ method_field('DELETE')}}<button type="submit" onclick="return myFunction();" class="btn btn-xs btn-danger"><i class="fa fa-times"></i>Delete</button></form>'
 
                     }
                 },
@@ -48,6 +47,17 @@
             'autoWidth'   : true,
         } );
         /*------------------------------------------------------*/
+
+//confirm deleting
+function myFunction(){
+    var agree = confirm("Are you sure you want to delete this City manager?");
+    if(agree == true){
+      return true
+    } else {
+      return false;
+     }
+  }
+
     </script>
 
     <a class="btn btn-info" href="{{route('citymanagers.create')}}"><i class="fa fa-plus"></i><span>Add New City Manager</span></a>

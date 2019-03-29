@@ -149,7 +149,7 @@
 
                     @role('admin|city_manager|gym_manager')
                     <li><a href="{{route('attendance.index')}}"><i class="fa fa-list-alt"></i> <span>Attendace</span></a></li>
-                    <li><a href="#"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
+                    <li><a href="{{route('sales.create')}}"><i class="fa fa-money "></i> <span>Buy Package For An User</span></a></li>
                     <li><a href="{{route('sales.index')}}"><i class="fa  fa-line-chart "></i> <span>Revenues</span></a></li>
                     @endrole
 
