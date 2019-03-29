@@ -45,4 +45,11 @@ class User extends Authenticatable implements BannableContract
         // return $this->belongsTo('App\User');
         return $this->belongsTo(Gym::class);
     }
+
+    public function assignRole($role)
+    {
+        return $this->roles()->sync(
+            Role::whereName($role)->firstOrFail()
+        );
+    }
 }

@@ -14,9 +14,7 @@ class CityManagersController extends Controller
 {
     public function index()
     {
-        return view('citymanagers.index', [
-            'citymanagers' => User::where('position', 2)->get()
-        ]);
+        return view('citymanagers.index');
     }
 
     public function create()
@@ -34,21 +32,17 @@ class CityManagersController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users',
             'national_id' => 'required|unique:users',
-            //'image'=>'mimes:jpeg,jpg',
+
         ]);
         $image = $request->file('image');
-        //$extension=$image->getClientOriginalExtension();
-        //Storage::disk('public')->put($image->getFilename(), File::get($image));
         $citymanager = new User();
         $citymanager->name = $request->name;
         $citymanager->email = $request->email;
         $citymanager->password = bcrypt($request->password);
         $citymanager->national_id = $request->national_id;
         $citymanager->position = $request->position;
-        //$citymanager->image = $image->getFilename();
         $citymanager->save();
-
-        //User::create($request->all());
+        $citymanager->assignRole('city_manager');
         return redirect()->route('citymanagers.index');
     }
 
@@ -89,6 +83,5 @@ class CityManagersController extends Controller
             ->get();
 
         return datatables()->of($citymanager)->toJson();
-        // return datatables()->of(User::where('position', 2)->get())->toJson();
     }
 }
