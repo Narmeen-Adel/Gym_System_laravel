@@ -21,8 +21,9 @@ use Illuminate\Http\Request;
 
 //Route::post('/session/{id}/attend','Api\AttendencesController@store')->middleware('auth:api');
 
-Route::post('register', 'Api\AuthController@register');
+Route::post('register', 'Api\AuthController@create');
 Route::post('login', 'Api\AuthController@login');
+ Route::get('user/verify/{token}', 'Api\AuthController@verifyUser');
 
 Route::group([
 
