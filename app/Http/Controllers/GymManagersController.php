@@ -145,7 +145,6 @@ class GymManagersController extends Controller
 
     public function ban(User $gymmanager)
     {
-        // User::where('id', $gymmanager->id)->delete();
         $gymmanager->ban();
         return redirect()->route('gymmanagers.index');
     }
