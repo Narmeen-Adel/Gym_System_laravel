@@ -25,7 +25,7 @@ class StoreGymRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:gyms,name',
-            'cover_image' => 'required',
+            'cover_image' => 'required|image',
         ];
     }
 

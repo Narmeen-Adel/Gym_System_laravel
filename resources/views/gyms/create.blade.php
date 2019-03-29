@@ -5,7 +5,7 @@
 <div class="container con">
     <h2>Add Gym</h2>
 
-<form action="{{route('gyms.store')}}" method="POST">
+<form action="{{route('gyms.store')}}" method="POST" enctype="multipart/form-data" >
     @csrf
     <div class="form-group">
            <label>Name</label>
@@ -16,10 +16,18 @@
             <input name="user_id" type="hidden" value="{{$user->id}}" class="form-control" />
         </div>
         
+        <div class="form-group">
+        <label>Choose City</label>
+            <select class="form-control" name="city_id">
+                @foreach($cities as $city)
+                <option value="{{$city->id}}">{{$city->name}}</option>
+                @endforeach
+            </select>
+        </div>
 
        <div class="form-group">
             <label>Upload Cover Image</label>
-            <input name="cover_image" type="file" class="form-control" name="image"/>
+            <input name="cover_image" type="file" class="form-control" id="cover_image"/>
         </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

@@ -27,11 +27,13 @@ var c_array = [
                 { data: 'id' },
                 { data: 'name' },
                 {data: 'city_manager'},
-                { data: 'cover_image' },
-
-
+                { data: "cover_image", 
+                  "render":function (data, type, row) {
+                      return '<img width="30px" src="/uploads/'+row.cover_image+'">'
+                    }
+                },
             ];
-            // console.log(c_array);
+            
 </script>
 @endrole
 @role('city_manager')
