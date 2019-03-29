@@ -113,4 +113,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+
+
+//Auth::routes(['verify' => true]);
 Route::get('/attendance', 'UserAttendancecontroller@index')->name('attendance.index');

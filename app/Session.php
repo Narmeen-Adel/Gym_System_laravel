@@ -17,7 +17,7 @@ class Session extends Model
         'day',
         'coaches',
         'gym_id',
-        'package_id'
+        'package_id',
 
     ];
 

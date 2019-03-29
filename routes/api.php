@@ -21,12 +21,13 @@ use Illuminate\Http\Request;
 
 //Route::post('/session/{id}/attend','Api\AttendencesController@store')->middleware('auth:api');
 
-Route::post('register', 'Api\AuthController@register');
+Route::post('register', 'Api\AuthController@create');
 Route::post('login', 'Api\AuthController@login');
+ Route::get('user/verify/{token}', 'Api\AuthController@verifyUser');
 
 Route::group([
 
-    'middleware' => 'api',
+    'middleware' => ['auth:api'],
     'prefix' => 'auth'
 
 ], function ($router) {
@@ -35,6 +36,11 @@ Route::group([
     Route::post('logout', 'Api\AuthController@logout');
     Route::post('refresh', 'Api\AuthController@refresh');
     Route::post('me', 'Api\AuthController@me');
+    Route::post('update', 'Api\AuthController@update');
+    Route::post('session/{id}/attend','Api\AuthController@store');
+    Route::get('session/total','Api\AuthController@getSession');
+                                                   
    
-
+    
 });
+//Auth::routes(['verify' => true]);

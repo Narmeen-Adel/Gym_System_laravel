@@ -10,9 +10,18 @@ class CustomerSession extends Pivot
     protected $fillable = [
         'session_id ',
         'customer_id',
-        // 'created_at',
 
     ];
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+
+    }
+
+    public function session(){
+        return $this->belongsTo(Session::class);
+
+    }
+   
 
 
 }

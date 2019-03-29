@@ -24,4 +24,15 @@ class Package extends Model
     {
         return $this->belongsToMany('App\Customer')->using(Sales::class)->withPivot('paid_price ,available_sessions');
     }
+
+    public function getPackagePrice($cents)
+    {
+        $inDollar=$cents /100;
+        return $inDollar;
+    }
+     
+    public function setPackagePrice($dollars)
+    {
+        $this->attributes['price'] = $dollars * 100;
+    }
 }
