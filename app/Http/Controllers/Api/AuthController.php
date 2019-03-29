@@ -89,7 +89,7 @@ public function verifyUser($token)
 
     
     public function login()
-    {
+    { 
         $credentials = request(['email', 'password']);
             
         if (! $token = auth('api')->attempt($credentials)) {
@@ -99,7 +99,9 @@ public function verifyUser($token)
             return response()->json(['message' =>   "you must verify your email"], 401);
 
         }
-
+        DB::table('customers')
+            ->where('id',auth('api')->user()->id)
+            ->update(['last_login' => Carbon::now()]);
         return $this->respondWithToken($token);
     }
 

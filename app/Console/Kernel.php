@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-       Commands\createadmin::class
+       Commands\createadmin::class,
+       Commands\sendEmails::class
+
     ];
 
     /**
@@ -24,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
+         $schedule->command('send:mails')->daily();
         //          ->hourly();
     }
 

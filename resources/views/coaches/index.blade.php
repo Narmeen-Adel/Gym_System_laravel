@@ -46,7 +46,7 @@
 
 //confirm deleting 
 function myFunction(){
-    var agree = confirm("Are you sure you want to delete this City manager?");
+    var agree = confirm("Are you sure you want to delete this Coach?");
     if(agree == true){
       return true
     } else {
