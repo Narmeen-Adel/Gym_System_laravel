@@ -60,14 +60,7 @@ class SalesController extends Controller
             'description' => 'Example charge',
             'source' => $token,
         ]);
-        
-       
-    //   Sale::create([
-    //   'available_sessions'=>$pack->sessionsNumber,
-    //   'paid_price'=>$pack->price,
-    //   'package_id'=>$pack->id,
-    //   'user_id'=>$request->customer_id]);
-   
+          
         if ($charge->status=="succeeded"){
             Sale::create(request()->all());
             return redirect()->route('sales.index');   

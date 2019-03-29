@@ -15,10 +15,11 @@
        <div class="form-group">
             <input name="user_id" type="hidden" value="{{$user->id}}" class="form-control" />
         </div>
+        
 
        <div class="form-group">
-            <label>Cover Image</label>
-            <input name="cover_image" type="file" class="form-control" placeholder="Choose Cover Image"/>
+            <label>Upload Cover Image</label>
+            <input name="cover_image" type="file" class="form-control" name="image"/>
         </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
