@@ -13,7 +13,7 @@ class Customer extends Authenticatable implements JWTSubject ,MustVerifyEmail
 {
     use Notifiable;
     protected $fillable = [
-        'name', 'email', 'password','gender','confirm_password','date_of_birth',//'image',
+        'name', 'email', 'password','gender','confirm_password','date_of_birth','image',
     ];
 
     /**
@@ -55,5 +55,11 @@ public function getJWTCustomClaims()
     public function sessions()
     {
         return $this->belongsToMany(Session::class)->using(CustomerSession::class)->withPivot('attendance_date');
+    }
+
+
+    public function verifyCustomer()
+    {
+        return $this->hasOne('App\VerifyCustomer');
     }
 }
