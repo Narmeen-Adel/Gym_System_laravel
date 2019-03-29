@@ -83,16 +83,22 @@ var c_array = [
     
  //confirm deleting 
   function myFunction(){
-    var agree = confirm("Are you sure you want to delete this City manager?");
+    var agree = confirm("Are you sure you want to delete ?");
     if(agree == true){
       return true
     } else {
       return false;
      }
   }
-
+  
     </script>
-
+    <script>
+      var msg = '{{Session::get('alert')}}';
+      var exist = '{{Session::has('alert')}}';
+      if(exist){
+        alert(msg);
+      }
+    </script>
 
 </div>
 

@@ -60,9 +60,11 @@ class SalesController extends Controller
             'source' => $token,
         ]);
         
-   
+
         if ($charge->status=="succeeded"){
             Sale::create(request()->all());
+            //'paid_price'=>$charge->amount
+        
             return redirect()->route('sales.index');   
         }
     }
