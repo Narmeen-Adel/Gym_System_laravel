@@ -36,17 +36,28 @@
     </select>
 </div>
 
+@foreach($packages as $package)
+<div class="form-group">
+  <input name="paid_price" type="hidden" value="{{$package->price}}" class="form-control" />
+</div>
+
+<div class="form-group">
+  <input name="available_sessions" type="hidden" value="{{$package->sessionsNumber}}" class="form-control" />
+</div>
+
+
 <!-- 4242 4242 4242 4242 -->
 <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_DHtOy8k5Qt9fT0xZTRe6iPPS00RW6IqPvR"
-    data-amount="999"
+    data-amount="{{$package->price}}"
     data-name="Stripe.com"
-    data-description="Example charge"
+    data-description="Package charge"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
     data-locale="auto"
     data-zip-code="true">
 </script> 
+@endforeach
 
 </form>
 </div>

@@ -51,21 +51,23 @@ class SalesController extends Controller
         // Token is created using Checkout or Elements!
         // Get the payment token ID submitted by the form:
         $token = $request->stripeToken;
-        
+        $package=Package::find($request->package_id);
+        $currency = $package->price;
+    
         $charge = \Stripe\Charge::create([
-            'amount' => 999,
+            'amount' => $currency,
             'currency' => 'usd',
             'description' => 'Example charge',
             'source' => $token,
         ]);
         
-    //   $pack=Package::find($request->package_id);
+       
     //   Sale::create([
     //   'available_sessions'=>$pack->sessionsNumber,
     //   'paid_price'=>$pack->price,
     //   'package_id'=>$pack->id,
     //   'user_id'=>$request->customer_id]);
-   dd($request);
+   
         if ($charge->status=="succeeded"){
             Sale::create(request()->all());
             return redirect()->route('sales.index');   

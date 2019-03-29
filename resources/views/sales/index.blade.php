@@ -21,7 +21,7 @@
       <th scope="col">Package Name</th>
       <th scope="col">Paid Price</th>
       <th scope="col">available_session</th>
-
+      
     </tr>
   </thead>
   <tbody>
