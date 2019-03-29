@@ -10,7 +10,6 @@ use App\Gym;
 use Illuminate\Http\Request;
 use App\Http\Requests\Sale\StoreSaleRequest;
 
-
 class SalesController extends Controller
 {
     /**
@@ -61,7 +60,6 @@ class SalesController extends Controller
             'source' => $token,
         ]);
         
-
    
         if ($charge->status=="succeeded"){
             Sale::create(request()->all());

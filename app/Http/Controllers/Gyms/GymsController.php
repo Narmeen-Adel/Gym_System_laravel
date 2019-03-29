@@ -8,6 +8,7 @@ use App\City;
 use App\Http\Requests\Gym\StoreGymRequest;
 use App\Http\Requests\Gym\UpdateGymRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Auth;
 use DB;
@@ -69,15 +70,25 @@ class GymsController extends Controller
 
     public function store(StoreGymRequest $request)
     {
-        $requestData = request()->all();
-        if ($request->hasFile('cover_image')){
-            $requestData['cover_image']=$request->file('cover_image')->store('images');
-        }
-        Gym::create(request()->all());
-        return redirect()->route('gyms.index');
-    }
+        // $requestData = $request->all();
+        // if ($request->hasFile('cover_image')){
+        //     dd($request);
+        //     $requestData['cover_image']=$request->file('cover_image')->store('images');
+        // }
+        //da code nada elly sha8al
+        $data = request()->all();
+        $data['cover_image'] = Storage::put("images",$request->file('cover_image'));
+       Gym::create($data);
+     return redirect()->route('gyms.index');
 
-    public function edit(Gym $gym)
+    //    $requestdata=$request->all();
+    //     if($request->hasFile('cover_imgage')){
+    //         $requestdata['cover_image']=$request->file('cover_imgage')
+    //         ->store('images');
+    // }
+}
+
+    public function edit(Gym $gym) 
     {       
         return view('gyms.edit', [
             'gym' => $gym,
@@ -94,14 +105,6 @@ class GymsController extends Controller
     {
          $gym->delete();
          return redirect()->route('gyms.index');
-
-        //  if ( $request->ajax() ) {
-        //      $gym->delete( $request->all() );
-    
-        //      return response(['msg' => 'Product deleted', 'status' => 'success']);
-        //  }
-        //  return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
-
     }
 
     public function show(Gym $gym)
