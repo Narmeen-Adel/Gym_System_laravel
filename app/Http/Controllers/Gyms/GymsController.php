@@ -17,44 +17,7 @@ class GymsController extends Controller
 {
     public function index()
     {
-        $user = \Auth::user();
-        $role = $user->roles->first()->name;
-
-        if ($role === 'admin') {
-
-            $gyms = DB::table('gyms')
-                ->join('cities', 'cities.id', '=', 'gyms.city_id')
-                ->join('users', 'users.id', '=', 'cities.city_manager_id')
-                ->select(
-                    'gyms.id as id',
-                    'gyms.name as name',
-                    'users.name as city_manager',
-                    'gyms.cover_image as cover_image'
-
-                )
-                ->get();
-            // dd($gyms);
-            return view('gyms.index', [
-                'gyms' => $gyms
-            ]);
-        } elseif ($role === 'city_manager') {
-            $id = Auth::user()->id;
-            $city_id = DB::table('cities')
-                ->select('cities.id')
-                ->where('cities.city_manager_id', '=', $id)
-                ->value('id');
-            $gyms = DB::table('gyms')
-                ->select(
-                    'gyms.id as id',
-                    'gyms.name as name',
-                    'gyms.cover_image as cover_image'
-                )->where('gyms.city_id', '=', $city_id)
-                ->get();
-            // dd($gyms);
-            return view('gyms.index', [
-                'gyms' => $gyms
-            ]);
-        }
+        return view('gyms.index');
     }
 
     public function create()
@@ -71,14 +34,13 @@ class GymsController extends Controller
     public function store(StoreGymRequest $request)
     {
         $data = request()->all();
-        $data['cover_image'] = Storage::put("images",$request->file('cover_image'));
-       Gym::create($data);
-     return redirect()->route('gyms.index');
-   
+        $data['cover_image'] = Storage::put("images", $request->file('cover_image'));
+        Gym::create($data);
+        return redirect()->route('gyms.index');
     }
 
-    public function edit(Gym $gym) 
-    {       
+    public function edit(Gym $gym)
+    {
         return view('gyms.edit', [
             'gym' => $gym,
         ]);
@@ -92,13 +54,12 @@ class GymsController extends Controller
 
     public function destroy(Gym $gym)
     {
-        $gymId=$gym->id;
-        $session=DB::select('select * from sessions where gym_id = :gym_id', ['gym_id' =>$gymId ]);
+        $gymId = $gym->id;
+        $session = DB::select('select * from sessions where gym_id = :gym_id', ['gym_id' => $gymId]);
         if (!$session) {
 
             $gym->delete();
-
-        } else{
+        } else {
 
             return redirect()->back()->with('alert', 'You can not delete this gym');
         }

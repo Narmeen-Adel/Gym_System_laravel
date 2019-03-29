@@ -15,36 +15,7 @@ class GymManagersController extends Controller
 {
     public function index()
     {
-        $user = \Auth::user();
-        $role = $user->roles->first()->name;
-        if ($role === 'admin') {
-            $data = DB::table('users')
-                ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-                ->where('model_has_roles.role_id', '=', 3)
-                ->get();
-
-            return view('gymmanagers.index', [
-                'gymmanagers' => $data
-            ]);
-        } elseif ($role === 'city_manager') {
-            $id = Auth::user()->id;
-            $city_id = DB::table('cities')
-                ->select('cities.id')
-                ->where('cities.city_manager_id', '=', $id)
-                ->value('id');
-
-            $data = DB::table('users')
-                ->join('gyms', 'gyms.id', '=', 'users.gym_id')
-                ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-                ->select('users.name')
-                ->where('model_has_roles.role_id', '=', 3)
-                ->where('gyms.city_id', '=', $city_id)
-                ->get();
-            // dd($data);
-            return view('gymmanagers.index', [
-                'gymmanagers' => $data
-            ]);
-        }
+       return view('gymmanagers.index');
     }
 
     public function create()
