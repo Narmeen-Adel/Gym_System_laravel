@@ -42,7 +42,6 @@ class User extends Authenticatable implements BannableContract
     ];
     public function gym()
     {
-        // return $this->belongsTo('App\User');
         return $this->belongsTo(Gym::class);
     }
 
