@@ -60,7 +60,9 @@ class SalesController extends Controller
             'description' => 'Example charge',
             'source' => $token,
         ]);
-          
+        
+
+   
         if ($charge->status=="succeeded"){
             Sale::create(request()->all());
             return redirect()->route('sales.index');   

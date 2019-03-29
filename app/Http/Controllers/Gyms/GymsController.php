@@ -69,6 +69,10 @@ class GymsController extends Controller
 
     public function store(StoreGymRequest $request)
     {
+        $requestData = request()->all();
+        if ($request->hasFile('cover_image')){
+            $requestData['cover_image']=$request->file('cover_image')->store('images');
+        }
         Gym::create(request()->all());
         return redirect()->route('gyms.index');
     }

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Session;
 use App\Customer;
@@ -9,14 +7,12 @@ use App\Attendance;
 use App\CustomerSession;
 use Auth;
 use DB;
-
 class UserAttendancecontroller extends Controller
 {
     public function index()
     {
         $user = \Auth::user();
         $role = $user->roles->first()->name;
-
         if ($role === 'admin') {
             $data = DB::table('customer_session')
                 ->join('sessions', 'sessions.id', '=', 'customer_session.session_id')
@@ -33,7 +29,6 @@ class UserAttendancecontroller extends Controller
                     'cities.name as city'
                 )
                 ->get();
-
             return view('attendance.index', [
                 'histories' => $data
             ]);
@@ -43,7 +38,6 @@ class UserAttendancecontroller extends Controller
                 ->select('cities.id')
                 ->where('cities.city_manager_id', '=', $id)
                 ->value('id');
-
             $data = DB::table('customer_session')
                 ->join('sessions', 'sessions.id', '=', 'customer_session.session_id')
                 ->join('customers', 'customers.id', '=', 'customer_session.customer_id')
@@ -56,9 +50,6 @@ class UserAttendancecontroller extends Controller
                     // 'customer_session.attendance_date as attendanceDate',
                     'gyms.name as gym'
                 )->where('gyms.city_id', '=', $city_id)->get();
-
-
-
             return view('attendance.index', [
                 'histories' => $data
             ]);
@@ -81,7 +72,6 @@ class UserAttendancecontroller extends Controller
                     // 'customer_session.attendance_date as attendanceDate',
                 )->where('gyms.id', '=', $gym_id)
                 ->get();
-
             return view('attendance.index', [
                 'histories' => $data
             ]);

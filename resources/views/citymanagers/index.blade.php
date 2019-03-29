@@ -37,7 +37,7 @@
 
                     }
                 },
-              
+
             ],
             'paging'      : true,
             'lengthChange': true,
@@ -48,7 +48,7 @@
         } );
         /*------------------------------------------------------*/
 
-//confirm deleting 
+//confirm deleting
 function myFunction(){
     var agree = confirm("Are you sure you want to delete this City manager?");
     if(agree == true){
