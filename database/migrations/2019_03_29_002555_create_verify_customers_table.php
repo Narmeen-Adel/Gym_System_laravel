@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttendancesTable extends Migration
+class CreateVerifyCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAttendancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('verify_customers', function (Blueprint $table) {
+            $table->unsignedbigInteger('customer_id');
+            //$table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->string('token');
             $table->timestamps();
-        
-        
         });
     }
 
@@ -28,6 +28,6 @@ class CreateAttendancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_attendences');
+        Schema::dropIfExists('verify_customers');
     }
 }

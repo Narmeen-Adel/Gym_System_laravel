@@ -68,5 +68,14 @@ function myFunction(){
     <a class="btn btn-info" href="{{route('packages.create')}}"><i class="fa fa-plus"></i><span>Add New Package</span></a>
 
 </div>
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif  
 
 @endsection

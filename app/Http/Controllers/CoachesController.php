@@ -21,6 +21,8 @@ class CoachesController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required']);
         Coach::create($request->all());
         return redirect()->route('coaches.index');
     }
@@ -34,6 +36,8 @@ class CoachesController extends Controller
 
 
     public function update(Request $request,Coach $coach){
+        $validatedData = $request->validate([
+            'name' => 'required']);
         $coach->update($request->all());
             return redirect()->route('coaches.index');
     }

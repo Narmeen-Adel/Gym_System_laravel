@@ -25,10 +25,11 @@ class GymsController extends Controller
                 ->join('cities', 'cities.id', '=', 'gyms.city_id')
                 ->join('users', 'users.id', '=', 'cities.city_manager_id')
                 ->select(
+                    'gyms.id as id',
                     'gyms.name as name',
-                    'gyms.created_at as created_at  ',
-                    'gyms.cover_image as cover_image',
-                    'users.name as city_manager'
+                    'users.name as city_manager',
+                    'gyms.cover_image as cover_image'
+
                 )
                 ->get();
             // dd($gyms);
@@ -43,12 +44,12 @@ class GymsController extends Controller
                 ->value('id');
             $gyms = DB::table('gyms')
                 ->select(
+                    'gyms.id as id',
                     'gyms.name as name',
-                    'gyms.created_at as created_at',
                     'gyms.cover_image as cover_image'
                 )->where('gyms.city_id', '=', $city_id)
                 ->get();
-            dd($gyms);
+            // dd($gyms);
             return view('gyms.index', [
                 'gyms' => $gyms
             ]);
@@ -108,6 +109,38 @@ class GymsController extends Controller
 
     public function get_table()
     {
-        return datatables()->of(Gym::with('City', 'User'))->toJson();
+        $user = \Auth::user();
+        $role = $user->roles->first()->name;
+
+        if ($role === 'admin') {
+
+            $gyms = DB::table('gyms')
+                ->join('cities', 'cities.id', '=', 'gyms.city_id')
+                ->join('users', 'users.id', '=', 'cities.city_manager_id')
+                ->select(
+                    'gyms.id as id',
+                    'gyms.name as name',
+                    'users.name as city_manager',
+                    'gyms.cover_image as cover_image'
+
+                )
+                ->get();
+            return (datatables()->of($gyms)->make(true));
+            //    return response()->json($gyms);
+            $id = Auth::user()->id;
+            $city_id = DB::table('cities')
+                ->select('cities.id')
+                ->where('cities.city_manager_id', '=', $id)
+                ->value('id');
+            $gyms = DB::table('gyms')
+                ->select(
+                    'gyms.id as id',
+                    'gyms.name as name',
+                    'gyms.cover_image as cover_image'
+                )->where('gyms.city_id', '=', $city_id)
+                ->get();
+            //   return response()->json($gyms);
+            return (datatables()->of($gyms)->make(true));
+        }
     }
 }

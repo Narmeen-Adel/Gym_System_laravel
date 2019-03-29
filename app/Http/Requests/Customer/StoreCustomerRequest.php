@@ -28,9 +28,9 @@ class StoreCustomerRequest extends FormRequest
             'name'=>'required |min:9',
             'email'=>'required|unique:customers|email',
             'password'=>'required|min:8|confirmed',
-            //'date_of_birth'=>'date|required|',//after:strtotime(1/1/1930)|before:strtotime(1/1/2015)',
+            'date_of_birth'=>'date:Y-m-d|required',//after:strtotime(1/1/1930)|before:strtotime(1/1/2015)',
             'gender'=>'in:male,female',
-            //'image'=>'',
+            'image'=>'mimes:jpeg,png',
             
           
         ];
@@ -45,10 +45,11 @@ class StoreCustomerRequest extends FormRequest
         'email.unique'=>"email must be nique ",
         'password.required'=>" insert password  ",
         'password.min'=>"password is short", 
-        //'date_of_birth.format'=>"d/m/y",
+        'date_of_birth.format'=>"d/m/y",
         'date_of_birth.after'=>"not valide date",
         'gender'=>"not valid gender",
-        'password.confirm'=>"must be identical"
+        'password.confirm'=>"must be identical",
+        'image.mimes'=>"not available type"
     ];
     }
 }

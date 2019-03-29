@@ -9,19 +9,23 @@ use App\Http\Requests\Customer\StoreCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
 use App\Http\Requests\Attendance\StoreAttendanceRequest;
 use App\CustomerSession;
-//////////////////
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Customer;
 use App\Session;
 use App\Sale;
+use App\VerifyCustomer;
+use App\Mail\VerifyMail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AuthController extends Controller
 {
    
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);  
+        $this->middleware('auth:api', ['except' => ['login','register','create','verifyUser']]);  
     }
 
     /**
@@ -29,6 +33,53 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
+///////////////////////////////////////////////
+protected function create(StoreCustomerRequest $request)
+{
+    Storage::put("app/public/images",$request->file('image'));
+    $user = Customer::create([
+        'name' => $request['name'],
+        'email' => $request['email'],
+        'date_of_birth'=>$request->date_of_birth,
+        'image'=> $request->image,
+        'password' => bcrypt($request['password']),
+    ]);
+
+    $verifyUser = VerifyCustomer::create([
+        'customer_id' => $user->id,
+        'token' => str_random(40)
+    ]);
+
+    Mail::to($user->email)->send(new VerifyMail($user));
+
+    return $user;
+}
+
+public function verifyUser($token)
+    { 
+        $verifyUser = VerifyCustomer::where('token', $token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->customer;
+            if(!$user->is_verified) {
+                $verifyUser->customer->is_verified = 1;
+                $verifyUser->customer->save();
+                $status = "Your e-mail is verified. You can now login.";
+            }else{
+                $status = "Your e-mail is already verified. You can now login.";
+            }
+        }else{
+            //return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+            return response()->json(['message' => "Sorry your email cannot be identified."], 401);
+
+        }
+
+        return response()->json(['message' => $status], 401);
+
+        //return redirect('/login')->with('status', $status);
+    }
+
+    
     public function login()
     {
         $credentials = request(['email', 'password']);
@@ -36,6 +87,9 @@ class AuthController extends Controller
         if (! $token = auth('api')->attempt($credentials)) {
         //dd(auth('api')->attempt($credentials));
             return response()->json(['error' => 'Unauthorized'], 401);
+        }elseif(!Customer::find(auth('api')->user()->id)->is_verified) {
+            return response()->json(['message' =>   "you must verify your email"], 401);
+
         }
 
         return $this->respondWithToken($token);
@@ -90,11 +144,13 @@ class AuthController extends Controller
     }
     public function register(StoreCustomerRequest $request)
     {    
-      
+         // dd($request->file('image')->getClientOriginalExtension());
          //$user=Customer::create($request->all());
-         $user=Customer::create(['name' => $request->name,'email'=>$request->email,
-         'password'=>bcrypt($request->password),'date_of_birth'=>$request->date_of_birth]);
-
+        //  Storage::put("app/public/images",$request->file('image'));
+        //  $user=Customer::create(['name' => $request->name,'email'=>$request->email,
+        //  'password'=>bcrypt($request->password),'date_of_birth'=>$request->date_of_birth,
+        //  'image'=> $request->image]);
+        $this->index();
          $token = auth('api')->login($user);
          return $this->respondWithToken($token);
 //////////////////////////////////////////////////////
@@ -163,11 +219,15 @@ class AuthController extends Controller
     }
 
     public function getSession(Request $request){
-      
-        $available_session=DB::table('sales')->where('customer_id', auth('api')->user()->id)
+      try{
+
+          $available_session=DB::table('sales')->where('customer_id', auth('api')->user()->id)
                                              ->orderBy('created_at', 'desc')->first()
                                              ->available_sessions;
-       
+        }catch(\ErrorException $e){
+         return response()->json(['message' => 'you dont  buy package to have session']);
+
+        }
         $total_session =DB::table('packages')
                         ->select('packages.sessionsNumber')   
                         ->join('sales as sal', 'packages.id', '=', 'sal.package_id')

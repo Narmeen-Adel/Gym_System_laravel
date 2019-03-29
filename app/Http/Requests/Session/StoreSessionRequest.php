@@ -31,7 +31,11 @@ class StoreSessionRequest extends FormRequest
             'coach_id' => 'exists:coaches,id',
             'gym_id' => 'exists:gyms,id',
             'package_id' => 'exists:packages,id',
-            'finishes_at'=>'after:starts_at'
+            'finishes_at'=>'after:starts_at',
+            'day' => 'required',
+            'starts_at'=>'required',
+            'finishes_at'=>'required',
+            'name'=>'required'
         ];
     }
     public function messages()

@@ -37,6 +37,7 @@
             ],    
         });
         /*------------------------------------------------------*/
+<<<<<<< HEAD
 
 //confirm deleting 
 function myFunction(){
@@ -48,8 +49,20 @@ function myFunction(){
      }
   }
 
+=======
+        
+>>>>>>> 8610c066ea5e51f74bdd16fa76ff813f06ef7695
     </script>
     <a href='/sessions/create' style="margin-top: 10px;" class="btn btn-info"><i class="fa fa-plus"></i><span>Add New Seesion</span></a>                   
-</div>  
+</div>
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif  
 
 @endsection
