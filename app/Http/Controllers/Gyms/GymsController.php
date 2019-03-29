@@ -70,23 +70,12 @@ class GymsController extends Controller
 
     public function store(StoreGymRequest $request)
     {
-        // $requestData = $request->all();
-        // if ($request->hasFile('cover_image')){
-        //     dd($request);
-        //     $requestData['cover_image']=$request->file('cover_image')->store('images');
-        // }
-        //da code nada elly sha8al
         $data = request()->all();
         $data['cover_image'] = Storage::put("images",$request->file('cover_image'));
        Gym::create($data);
      return redirect()->route('gyms.index');
-
-    //    $requestdata=$request->all();
-    //     if($request->hasFile('cover_imgage')){
-    //         $requestdata['cover_image']=$request->file('cover_imgage')
-    //         ->store('images');
-    // }
-}
+   
+    }
 
     public function edit(Gym $gym) 
     {       
@@ -103,9 +92,19 @@ class GymsController extends Controller
 
     public function destroy(Gym $gym)
     {
-         $gym->delete();
-         return redirect()->route('gyms.index');
+        $gymId=$gym->id;
+        $session=DB::select('select * from sessions where gym_id = :gym_id', ['gym_id' =>$gymId ]);
+        if (!$session) {
+
+            $gym->delete();
+
+        } else{
+
+            return redirect()->back()->with('alert', 'You can not delete this gym');
+        }
+        return redirect()->route('gyms.index');
     }
+
 
     public function show(Gym $gym)
     {
