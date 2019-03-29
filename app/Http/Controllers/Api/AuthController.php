@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
-
+//use Illuminate\Support\Carbon\Carbon;
+//use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\Customer\StoreCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
@@ -19,6 +20,9 @@ use App\VerifyCustomer;
 use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use \DateTime;
+use App\Notifications\InvoicePaid;
+
 
 class AuthController extends Controller
 {
@@ -37,12 +41,14 @@ class AuthController extends Controller
 ///////////////////////////////////////////////
 protected function create(StoreCustomerRequest $request)
 {
-    Storage::put("app/public/images",$request->file('image'));
+    $image=Storage::put("images",$request->file('image'));
+    dd($image);
+   // dd($image);
     $user = Customer::create([
         'name' => $request['name'],
         'email' => $request['email'],
         'date_of_birth'=>$request->date_of_birth,
-        'image'=> $request->image,
+        'image'=>$image,
         'password' => bcrypt($request['password']),
     ]);
 
@@ -64,6 +70,8 @@ public function verifyUser($token)
             if(!$user->is_verified) {
                 $verifyUser->customer->is_verified = 1;
                 $verifyUser->customer->save();
+                /////to send 
+                $user->notify(new InvoicePaid("welcome you are verified ...."));
                 $status = "Your e-mail is verified. You can now login.";
             }else{
                 $status = "Your e-mail is already verified. You can now login.";
@@ -200,7 +208,7 @@ public function verifyUser($token)
                 if($query->toArray()!= []){
                   return response()->json(['message' => ' you have already registered toattend this session ..']);
                 }
-/////////////////// insert data 
+      /////////////////// insert data 
        DB::table('customer_session')->insert(
         [
             'customer_id'     =>   auth('api')->user()->id, 
@@ -228,7 +236,7 @@ public function verifyUser($token)
          return response()->json(['message' => 'you dont  buy package to have session']);
 
         }
-        $total_session =DB::table('packages')
+        $total_session =DB::table('sales')
                         ->select('packages.sessionsNumber')   
                         ->join('sales as sal', 'packages.id', '=', 'sal.package_id')
                         ->where('customer_id',auth('api')->user()->id)
@@ -238,7 +246,23 @@ public function verifyUser($token)
             'available_session' =>$available_session,],201);             
 
     }
-
+    public function sessionHistory(Request $request){
+        try{
+  
+            $session_history=DB::table('customer_session as cs')
+                                ->select('s.name as session_name','s.starts_at','cs.attendance_date as attenance_time','g.name as gym_name')   
+                                ->leftjoin('sessions as s', 's.id', '=', 'cs.session_id')
+                                ->leftjoin('gyms as g','g.id', '=','s.gym_id')
+                                ->where('customer_id',auth('api')->user()->id)->get()->toArray();
+                                
+          }catch(\ErrorException $e){
+           return response()->json(['message' => 'you dont  buy package to have session']);
+  
+          }
+          return response()->json(
+              $session_history,201);  
+          }           
+  
 
 }
 
