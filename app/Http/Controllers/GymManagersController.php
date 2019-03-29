@@ -150,7 +150,7 @@ class GymManagersController extends Controller
     }
     public function unban(User $gymmanager)
     {
-        // User::where('id', $gymmanager->id)->delete();
+
         $gymmanager->unban();
         return redirect()->route('gymmanagers.index');
     }
