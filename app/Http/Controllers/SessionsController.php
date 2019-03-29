@@ -109,11 +109,11 @@ class SessionsController extends Controller
             return redirect()->route('sessions.index')->withErrors($message_bag);
         }
         else{
-        $affectedRows = Session::where('id',$session->id)->delete();
         $sessionsCoaches=DB::table('coaches_sessions')->where('session_id', $session->id)->get();
-            foreach($sessionsCoaches as $session){
-                $session->delete();
-            }
+           foreach($sessionsCoaches as $sessionc){
+               DB::table('coaches_sessions')->where('session_id',$sessionc->session_id)->delete();
+           }
+        $affectedRows = Session::where('id',$session->id)->delete();
         return redirect()->route('sessions.index');
        
         }
