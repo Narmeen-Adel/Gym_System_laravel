@@ -42,4 +42,13 @@
      <a href="{{route('packages.index')}}" class="btn btn-danger" style="display:inline; float:left; margin-left:10px;">Back</a>
 
  </div>
+ @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif  
  @endsection

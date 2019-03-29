@@ -26,8 +26,12 @@ class PackageController extends Controller
     }
 
 
-    public function store()
+    public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'sessionsNumber'=>'required',
+            'price'=>'required']);
         $req=request()->all();
         Package::create($req);
         return redirect()->route('packages.index');
@@ -41,6 +45,10 @@ class PackageController extends Controller
     }
 
     public function update(Package $package,Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'sessionsNumber'=>'required',
+            'price'=>'required']);
         $package->update($request->all());
         return redirect()->route('packages.index');
     }
