@@ -83,7 +83,7 @@ var c_array = [
     
  //confirm deleting 
   function myFunction(){
-    var agree = confirm("Are you sure you want to delete this City manager?");
+    var agree = confirm("Are you sure you want to delete ?");
     if(agree == true){
       return true
     } else {
