@@ -110,14 +110,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/sales', 'SalesController@store')->name('sales.store');
     Route::get('/customers', 'CustomerController@index')->name('customers.index');
     Route::get('/data_customers', 'CustomerController@get_table');
+    Route::get('/attendance', 'UserAttendancecontroller@index')->name('attendance.index');
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-
-
-
-//Auth::routes(['verify' => true]);
-Route::get('/attendance', 'UserAttendancecontroller@index')->name('attendance.index');
