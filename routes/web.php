@@ -51,6 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
             ->name('gymmanagers.update');
         Route::delete('/gymmanagers/{gymmanager}', 'GymManagersController@destroy')
             ->name('gymmanagers.destroy');
+        Route::get('/gymmanagers/{gymmanager}/ban', 'GymManagersController@ban')
+            ->name('gymmanagers.ban');
+            Route::get('/gymmanagers/{gymmanager}/unban', 'GymManagersController@unban')
+            ->name('gymmanagers.unban');
         Route::get('/data_gymmanagers', 'GymManagersController@get_table');
     });
     Route::group(['middleware' => ['role:admin']], function () {
