@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Sale;
 use App\Customer;
 use App\Package;
+use Stripe\Stripe;
+use App\Gym;
 use Illuminate\Http\Request;
 use App\Http\Requests\Sale\StoreSaleRequest;
 
@@ -20,6 +22,7 @@ class SalesController extends Controller
     {
       return view('sales.index',[
           'sales' => Sale::all(),
+          'customers' => Customer::all(),
           'sum' => Sale::all()->sum('paid_price'),
         ]);
     }
@@ -31,7 +34,7 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('sales.create',['customers'=>Customer::all(),'packages' =>Package::all()]);
+        return view('sales.create',['customers'=>Customer::all(),'packages' =>Package::all(),'gyms' =>Gym::all()]);
     }
 
     /**
@@ -42,14 +45,26 @@ class SalesController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
+    
+        Stripe::setApiKey("sk_test_m5t3Ge3l73E7UGiQYukXfh3K00SMAhGxvr");
 
-      $pack=Package::find($request->package_id);
-      Sale::create([
-      'available_sessions'=>$pack->sessionsNumber,
-      'paid_price'=>$pack->price,
-      'package_id'=>$pack->id,
-      'user_id'=>$request->customer_id]);
-      return redirect()->route('sales.index');
+        // Token is created using Checkout or Elements!
+        // Get the payment token ID submitted by the form:
+        $token = $request->stripeToken;
+        $package=Package::find($request->package_id);
+        $currency = $package->price;
+    
+        $charge = \Stripe\Charge::create([
+            'amount' => $currency,
+            'currency' => 'usd',
+            'description' => 'Example charge',
+            'source' => $token,
+        ]);
+          
+        if ($charge->status=="succeeded"){
+            Sale::create(request()->all());
+            return redirect()->route('sales.index');   
+        }
     }
 
 

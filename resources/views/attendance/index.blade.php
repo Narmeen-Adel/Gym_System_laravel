@@ -4,8 +4,8 @@
 <div class="container">
     <h2>Attendance History</h2>
     <br>
-    <table id="example" class="table table-bordered table-striped">
-        <thead>
+    <table id="example" class="table table-bordered table-striped">        
+    <thead>
             <tr>
 
                 <th>User Name</th>

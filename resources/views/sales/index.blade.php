@@ -2,7 +2,6 @@
 @extends('layouts.admin')
 
 @section('content')
-<!-- <a href="{{route('sales.create')}}" class="btn btn-success">Create sales</a> -->
  <br>
  <br>
  <div class="card">
@@ -16,13 +15,13 @@
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">ID</th>
       <th scope="col">customer Email</th>
       <th scope="col">customer Name</th>
       <th scope="col">Package Name</th>
-      <th>Paid Price</th>
+      <th scope="col">Paid Price</th>
       <th scope="col">available_session</th>
-
+      
     </tr>
   </thead>
   <tbody>
